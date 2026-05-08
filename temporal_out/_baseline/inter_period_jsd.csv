@@ -1,0 +1,10 @@
+lang,author,period_i,year_i,period_j,year_j,jsd
+de,fontane,early,1882,middle,1895,0.0018080764227125633
+de,fontane,early,1882,late,1898,0.002627775111630786
+de,fontane,middle,1895,late,1898,0.0017641737327287437
+en,dickens,early,1836,middle,1850,0.0055939213219619805
+en,dickens,early,1836,late,1865,0.009962411191335643
+en,dickens,middle,1850,late,1865,0.0023605205548596084
+nl,couperus,early,1889,middle,1900,0.002688280554999769
+nl,couperus,early,1889,late,1917,0.025908579433549846
+nl,couperus,middle,1900,late,1917,0.02791724040921287

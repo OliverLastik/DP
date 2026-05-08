@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>prezentacia.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="diplomová-práca--stav-implementácie">Diplomová práca — stav implementácie</h1>
+<p><em>Podklad na konzultáciu so školiteľkou. 11 fáz pipeline, 3 jazyky, 240 okien + 9 temporálnych kníh.</em></p>
+<hr>
+<h2 id="1-cieľ">1. Cieľ</h2>
+<p>Porovnať štatistické a sieťové vlastnosti literárnych textov v <strong>troch jazykoch</strong> (en / de / nl) a u toho istého autora v <strong>troch časových obdobiach</strong>. Pre vybranú vlastnosť (IPI) navrhnúť matematický model a overiť jeho stabilitu.</p>
+<p><strong>Metodická základňa:</strong> Kulig et al. (2016) <em>&quot;In narrative texts punctuation marks obey the same statistics as words&quot;</em> a Stanisz et al. (2014) — odtiaľ pochádza konceptuálny rámec IPI + diskrétny Weibull, tak ako aj práca s word-adjacency sieťami, kde interpunkcia figuruje ako plnohodnotný uzol.</p>
+<hr>
+<h2 id="2-korpus">2. Korpus</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Hlavný korpus</th>
+<th>Temporálny korpus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Zdroj</strong></td>
+<td>Project Gutenberg + DBNL</td>
+<td>Gutenberg + DBNL</td>
+</tr>
+<tr>
+<td><strong>Jazyky</strong></td>
+<td>en, de, nl</td>
+<td>en (Dickens), de (Fontane), nl (Couperus)</td>
+</tr>
+<tr>
+<td><strong>Rozsah</strong></td>
+<td>80 kníh / jazyk × 30 000 tokenov = <strong>240 okien</strong></td>
+<td>3 knihy / autora × 3 obdobia = <strong>9 kníh</strong> (plné, bez okien)</td>
+</tr>
+<tr>
+<td><strong>Metadáta</strong></td>
+<td><code>meta_filtered.csv</code> (filter z <code>pg_catalog.csv</code>)</td>
+<td><code>temporal_data/raw/</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="3-pipeline-11-fáz-scriptsxx_">3. Pipeline (11 fáz, <code>scripts/XX_.../</code>)</h2>
+<pre class="hljs"><code><div>01_data        → download_corpus, filter_pg_catalog, make_windows
+02_tokenize    → tokenize_windows (words, words+punct)
+03_punct_stats → extract + summarize + boxplots
+04_markov      → transition matrix, rowwise, JSD language distance
+05_rankfreq    → Zipf–Mandelbrot, Heaps, logbin power-law
+06_network     → word-adjacency graph, centrality, degree, top nodes/edges
+07_baselines   → BA, Dorogovtsev–Mendes, Markov-synthetic, shuffled null
+08_advanced    → MFDFA (vety), recurrence time (burstiness)
+09_combined    → cross-language overlay plots, dashboard
+10_improvements→ vylepšené heatmapy, logbin fit, 4-model AIC
+11_temporal    → IPI, diskrétny Weibull, bootstrap, AIC, cross-author
+</div></code></pre>
+<hr>
+<h2 id="4-fáza-3--štatistika-interpunkcie">4. Fáza 3 — Štatistika interpunkcie</h2>
+<p>Per-1k-token mediány s 95 % CI, 80 kníh / jazyk (<a href="../punct_out_core/punct_summary_by_language.csv">punct_out_core/punct_summary_by_language.csv</a>):</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>.</code></th>
+<th><code>,</code></th>
+<th><code>;</code></th>
+<th><code>:</code></th>
+<th><code>?</code></th>
+<th><code>!</code></th>
+<th><code>—</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>en</td>
+<td>48.2</td>
+<td>70.5</td>
+<td>4.9</td>
+<td>0.9</td>
+<td>4.5</td>
+<td>3.4</td>
+<td>12.8</td>
+</tr>
+<tr>
+<td>de</td>
+<td>43.7</td>
+<td><strong>92.6</strong></td>
+<td>3.8</td>
+<td>3.8</td>
+<td>5.4</td>
+<td>7.0</td>
+<td>1.8</td>
+</tr>
+<tr>
+<td>nl</td>
+<td>47.1</td>
+<td>87.7</td>
+<td>5.9</td>
+<td>3.2</td>
+<td>5.8</td>
+<td>6.2</td>
+<td>5.9</td>
+</tr>
+</tbody>
+</table>
+<p>→ Nemčina má najviac čiarok (dlhé vetvené súvetia), angličtina <strong>výrazne</strong> viac pomlčiek (≈ 7×).</p>
+<p><strong>Obrázky:</strong></p>
+<p><img src="../punct_out_core/plots/boxplot_per1k_comma.png" alt="comma"></p>
+<p><em>Boxplot počtu čiarok na 1000 tokenov, 80 kníh / jazyk. Nemecké mediány sú jasne posunuté vyššie, rozptyl v rámci jazyka je malý v porovnaní s medzi-jazykovým rozdielom — čiarka je teda silne diskriminatívny znak. Vonkajšie body sú jednotlivé knihy, nie artefakty.</em></p>
+<p><img src="../punct_out_core/plots/boxplot_per1k_dot.png" alt="dot"></p>
+<p><em>Boxplot bodiek (koniec vety). Všetky tri jazyky majú podobný medián (~45/1000), ale rozpätie sa líši — krátke anglické vety vs. dlhšie nemecké súvetia sa prejavujú v rozptyle.</em></p>
+<p><strong>Ďalšie boxploty</strong> (ostatné symboly — formát identický):</p>
+<ul>
+<li><a href="../punct_out_core/plots/boxplot_per1k_semicolon.png">boxplot_per1k_semicolon.png</a>, <a href="../punct_out_core/plots/boxplot_per1k_question.png">boxplot_per1k_question.png</a>, <a href="../punct_out_core/plots/boxplot_per1k_exclamation.png">boxplot_per1k_exclamation.png</a>, <a href="../punct_out_core/plots/boxplot_per1k_colon.png">boxplot_per1k_colon.png</a></li>
+</ul>
+<hr>
+<h2 id="5-fáza-4--markov-modely--medzi-jazyková-vzdialenosť">5. Fáza 4 — Markov modely + medzi-jazyková vzdialenosť</h2>
+<p>First-order Markov na interpunkčných prechodoch (joint + rowwise). JSD medzi jazykmi (<a href="../markov_out_core/language_distance_jsd.csv">markov_out_core/language_distance_jsd.csv</a>):</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>de</th>
+<th>en</th>
+<th>nl</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>de</strong></td>
+<td>0</td>
+<td>0.071</td>
+<td>0.026</td>
+</tr>
+<tr>
+<td><strong>en</strong></td>
+<td>0.071</td>
+<td>0</td>
+<td>0.035</td>
+</tr>
+<tr>
+<td><strong>nl</strong></td>
+<td>0.026</td>
+<td>0.035</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>→ de–nl najbližšie (príbuznosť), de–en najvzdialenejšie.</p>
+<p><strong>Obrázky:</strong></p>
+<p><img src="../markov_out_core/plots/language_distance_heatmap.png" alt="lang_dist"></p>
+<p><em>Heatmapa JSD medzi párovo-jazykovými prechodovými maticami. Tmavšia = bližšie jazyky. Uhlopriečka je 0 (porovnanie so sebou). <strong>Čo sa tu meria:</strong> každý jazyk má svoju 9×9 (alebo väčšiu) prechodovú maticu medzi interpunkčnými symbolmi; JSD porovnáva tieto rozdelenia ako celok, nie jeden symbol.</em></p>
+<p><img src="../improved_plots/heatmaps/heatmap_merged_all_langs.png" alt="heatmap_merged"></p>
+<p><em>Vylepšená verzia: tri prechodové matice en/de/nl side-by-side s jednotnou farebnou škálou. Ľahko vidno, že všetky tri majú dominantné prechody <code>. → &lt;sent_start&gt;</code> a <code>, → word</code>, ale nemčina má výrazne vyššie <code>, → word</code> (dlhé súvetia prechádzajúce cez viacero čiarok).</em></p>
+<p><strong>Ďalšie heatmapy:</strong></p>
+<ul>
+<li><a href="../markov_out_core/plots_v2/heatmap_sidebyside.png">markov_out_core/plots_v2/heatmap_sidebyside.png</a>, <a href="../markov_out_core/plots_v2/heatmap_core_en.png">heatmap_core_en.png</a>, <a href="../markov_out_core/plots_v2/heatmap_core_de.png">heatmap_core_de.png</a>, <a href="../markov_out_core/plots_v2/heatmap_core_nl.png">heatmap_core_nl.png</a></li>
+<li><a href="../markov_out_core/plots_v2/delta_en_minus_de.png">delta_en_minus_de.png</a>, <a href="../markov_out_core/plots_v2/delta_en_minus_nl.png">delta_en_minus_nl.png</a>, <a href="../markov_out_core/plots_v2/delta_de_minus_nl.png">delta_de_minus_nl.png</a> — rozdielové heatmapy</li>
+<li><a href="../improved_plots/heatmaps/transition_barplot.png">improved_plots/heatmaps/transition_barplot.png</a></li>
+</ul>
+<hr>
+<h2 id="6-fáza-5--zipfmandelbrot--heaps">6. Fáza 5 — Zipf–Mandelbrot + Heaps</h2>
+<p><strong>Zipf–Mandelbrot</strong> <code>f(r) = C / (r + c)^α</code> (<a href="../rankfreq_out_core/zipf_mandelbrot/zipf_mandelbrot_fit_summary.csv">rankfreq_out_core/zipf_mandelbrot/zipf_mandelbrot_fit_summary.csv</a>):</p>
+<table>
+<thead>
+<tr>
+<th>mód</th>
+<th>en α</th>
+<th>de α</th>
+<th>nl α</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>words</td>
+<td>1.124</td>
+<td>1.134</td>
+<td>1.171</td>
+</tr>
+<tr>
+<td>words + punct</td>
+<td>1.178</td>
+<td>1.170</td>
+<td>1.274</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Heapsov zákon</strong> <code>V = K · N^β</code> (<a href="../rankfreq_out_core/heaps_law/heaps_law_summary.csv">rankfreq_out_core/heaps_law/heaps_law_summary.csv</a>):</p>
+<ul>
+<li>en β ≈ 0.68 (najmenší slovník)</li>
+<li>de β ≈ 0.75 (morfologická bohatosť — flexia)</li>
+<li>nl β ≈ 0.74</li>
+</ul>
+<p><strong>Metodická poznámka k ZM fitu:</strong> pôvodný fit bez spodného orezu rankov dával <strong>rank-shift artefakt</strong> — parameter <code>c</code> (pre nemčinu) vychádzal umelo vysoký (≈ 5.31), lebo nízke ranky (r &lt; 20) ťahali fit mimo lineárnej oblasti. Po orezaní fit-okna na <code>r ∈ [20, 10000]</code> sa hodnota <code>c</code> ustálila na interpretovateľných ≈ 3.55 a α zostalo stabilné. To isté platí pre power-law degree fit v sieťach — počiatočné k &lt; 4 a jednopozorovacové chvostové bin-y sa musia odfiltrovať, inak je sklon vychýlený.</p>
+<p><strong>Obrázky:</strong></p>
+<p><img src="../rankfreq_out_core/zipf_mandelbrot/plots/comparison_alpha.png" alt="zm_alpha"></p>
+<p><em>ZM exponent α porovnanie naprieč jazykmi (words vs words+punct). Rozdiel medzi jazykmi je malý (~0.05) ale konzistentný: holandčina má najstrmší sklon (α ≈ 1.17) → frekvenčné rozdelenie je špicatejšie (dominantné slová silnejšie dominujú). Pridanie interpunkcie sklon ešte zostrí.</em></p>
+<p><img src="../rankfreq_out_core/zipf_mandelbrot/plots/zipf_mandelbrot_en.png" alt="zm_en"></p>
+<p><em>ZM fit pre angličtinu v log-log osiach. Červená prerušovaná čiara je <code>f(r) = C / (r + c)^α</code> v orezanom rank okne <code>r ∈ [20, 10000]</code>. Body nad a pod čiarou na začiatku (hlava) a konci (tail hapax legomena — slová čo sa vyskytnú raz) sú vedome vynechané z fitu, ale zobrazené pre kontext.</em></p>
+<p><img src="../rankfreq_out_core/heaps_law/heaps_overlay.png" alt="heaps"></p>
+<p><em>Heapsov overlay: slovná zásoba V rastie ako <code>V = K · N^β</code> s N = počet tokenov. Nemčina a holandčina rastú rýchlejšie (β ≈ 0.74–0.75) — nové unikátne tvary sa objavujú aj pri veľkom N, lebo flexia tvorí nové wordforms (<code>der/die/das/dem/den/des</code>...). Angličtina sa skôr nasýti (β ≈ 0.68).</em></p>
+<p><strong>Ďalšie ploty:</strong></p>
+<ul>
+<li><a href="../rankfreq_out_core/zipf_mandelbrot/plots/comparison_c.png">comparison_c.png</a>, <a href="../rankfreq_out_core/zipf_mandelbrot/plots/zipf_mandelbrot_de.png">zipf_mandelbrot_de.png</a>, <a href="../rankfreq_out_core/zipf_mandelbrot/plots/zipf_mandelbrot_nl.png">zipf_mandelbrot_nl.png</a></li>
+<li><a href="../rankfreq_out_core/plots/rankfreq_compare_words_en_de_nl.png">rankfreq_compare_words_en_de_nl.png</a> (overlay troch jazykov)</li>
+<li><a href="../rankfreq_out_core/heaps_law/heaps_beta_boxplot_en.png">heaps_beta_boxplot_en.png</a>, <a href="../rankfreq_out_core/heaps_law/heaps_beta_boxplot_de.png">heaps_beta_boxplot_de.png</a>, <a href="../rankfreq_out_core/heaps_law/heaps_beta_boxplot_nl.png">heaps_beta_boxplot_nl.png</a></li>
+<li><a href="../improved_plots/rankfreq/logbin_improved_words_en.png">logbin_improved_words_en.png</a></li>
+</ul>
+<hr>
+<h2 id="7-fáza-6--word-adjacency-siete">7. Fáza 6 — Word-adjacency siete</h2>
+<p>80 kníh / jazyk → graf susednosti slov (edge = dve za sebou idúce slová, <strong>lowercase normalizácia</strong> aby &quot;The&quot; a &quot;the&quot; boli jeden uzol). Súhrn (<a href="../network_out_core/metrics_summary_by_language.csv">network_out_core/metrics_summary_by_language.csv</a>):</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>n_nodes</th>
+<th>avg_deg</th>
+<th>clustering</th>
+<th>density</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>en</td>
+<td>4 558</td>
+<td>8.23</td>
+<td><strong>0.406</strong></td>
+<td>0.00181</td>
+</tr>
+<tr>
+<td>de</td>
+<td>6 491</td>
+<td>6.88</td>
+<td>0.323</td>
+<td>0.00107</td>
+</tr>
+<tr>
+<td>nl</td>
+<td>5 338</td>
+<td>7.77</td>
+<td>0.400</td>
+<td>0.00147</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Power-law exponenty <code>P(k) ~ k^(-γ)</code> (log-bin fit, orezaná lineárna oblasť):</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Real γ</th>
+<th>BA γ</th>
+<th>DM γ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>en</td>
+<td><strong>2.05</strong> (k ∈ [4, 684], R² = 0.996)</td>
+<td>2.66</td>
+<td>2.73</td>
+</tr>
+<tr>
+<td>de</td>
+<td><strong>2.02</strong> (k ∈ [4, 806])</td>
+<td>2.62</td>
+<td>2.65</td>
+</tr>
+<tr>
+<td>nl</td>
+<td><strong>2.00</strong> (k ∈ [4, 801])</td>
+<td>2.72</td>
+<td>2.73</td>
+</tr>
+</tbody>
+</table>
+<p>→ Reálne texty sú konzistentne plytšie (γ ≈ 2.0), klasické rast-modely majú strmší pokles.</p>
+<p><strong>Kľúčový Kulig-efekt — interpunkcia dominuje topológii:</strong></p>
+<ul>
+<li><strong>Top-20 uzlov podľa stupňa</strong> (en): 20 % sú interpunkčné znaky (<code>,</code>, <code>.</code>, <code>—</code>) — a sú v úplnej špičke.</li>
+<li><strong>Top-30 hrán</strong>: 50 % en hrán a 87 % de hrán obsahuje aspoň jednu interpunkciu.</li>
+<li><strong>Node-level</strong> (interpunkčné vs. slovné uzly): <code>,</code> a <code>.</code> majú k ≈ 475–657 a clustering C ≈ 0.04–0.06 — sú to <strong>huby, nie kliky</strong>. Typické slovné uzly majú k ≈ 6–8 a C ≈ 0.36–0.45 — sú to lokálne kliky.</li>
+<li><strong>Words vs. words+punct</strong>: pridanie iba <strong>6 nových uzlov</strong> (punct tokeny) zvýši priemerný clustering o <strong>+0.08 až +0.10</strong>. Interpunkcia je teda štrukturálne nezanedbateľná — konzistentné s Kulig et al. (2016).</li>
+</ul>
+<p><strong>Obrázky — orezané (iba lineárna power-law oblasť):</strong></p>
+<p><img src="../improved_plots/degree_cropped/degree_cropped_en.png" alt="deg_crop_en"></p>
+<p><em>Cropped degree distribúcia pre angličtinu. Modré krúžky = reálna sieť, trojuholníky = Barabási–Albert, štvorce = Dorogovtsev–Mendes. Všetky tri sú log-binned a fitované priamkou v log-log osiach. <strong>Kľúčový pohľad:</strong> reálny exponent γ ≈ 2.05 (modrá) je plytší než BA (2.66) a DM (2.73). To nie je vizuálny artefakt — je to jeden zo spôsobov, ako ukážeme, že klasické rast-modely negenerujú správny tvar P(k).</em></p>
+<p><img src="../improved_plots/degree_cropped/degree_cropped_de.png" alt="deg_crop_de"></p>
+<p><em>To isté pre nemčinu. Ten istý pattern — reálna sieť plytšia než oba rast-modely.</em></p>
+<p><img src="../improved_plots/rankfreq_cropped/rankfreq_cropped_en_words.png" alt="rankfreq_crop_en"></p>
+<p><em>Cropped rank-frequency pre angličtinu (len slová). Čierna čiara je Zipf fit v lineárnej oblasti (α ≈ 1.07, R² = 0.9955). Zobrazujeme iba stred rozdelenia, bez ohnutého začiatku (r &lt; 10) a jednopozorovacieho chvosta.</em></p>
+<p><strong>Ďalšie orezané:</strong></p>
+<ul>
+<li><a href="../improved_plots/degree_cropped/degree_cropped_nl.png">degree_cropped_nl.png</a></li>
+<li><a href="../improved_plots/rankfreq_cropped/rankfreq_cropped_de_words.png">rankfreq_cropped_de_words.png</a>, <a href="../improved_plots/rankfreq_cropped/rankfreq_cropped_nl_words.png">rankfreq_cropped_nl_words.png</a></li>
+<li><a href="../improved_plots/rankfreq_cropped/rankfreq_cropped_en_words_plus_punct.png">rankfreq_cropped_en_words_plus_punct.png</a>, <a href="../improved_plots/rankfreq_cropped/rankfreq_cropped_de_words_plus_punct.png">rankfreq_cropped_de_words_plus_punct.png</a>, <a href="../improved_plots/rankfreq_cropped/rankfreq_cropped_nl_words_plus_punct.png">rankfreq_cropped_nl_words_plus_punct.png</a></li>
+</ul>
+<p><strong>Obrázky — pôvodné (pre kontext, ukazujú aj head + tail):</strong></p>
+<ul>
+<li><a href="../network_out_core/plots/degree_pk_en.png">network_out_core/plots/degree_pk_en.png</a>, <a href="../network_out_core/plots/degree_pk_de.png">degree_pk_de.png</a>, <a href="../network_out_core/plots/degree_pk_nl.png">degree_pk_nl.png</a></li>
+<li><a href="../network_out_core/powerlaw/ccdf_fit_real_en.png">network_out_core/powerlaw/ccdf_fit_real_en.png</a>, <a href="../network_out_core/powerlaw/ccdf_fit_real_de.png">ccdf_fit_real_de.png</a>, <a href="../network_out_core/powerlaw/ccdf_fit_real_nl.png">ccdf_fit_real_nl.png</a></li>
+<li><a href="../improved_plots/degree/degree_improved_en.png">improved_plots/degree/degree_improved_en.png</a>, <a href="../improved_plots/degree/degree_improved_de.png">degree_improved_de.png</a>, <a href="../improved_plots/degree/degree_improved_nl.png">degree_improved_nl.png</a></li>
+</ul>
+<hr>
+<h2 id="8-fáza-7--evaluácia-sieťových-rast-modelov-voči-reálnym-jazykovým-sieťam">8. Fáza 7 — Evaluácia sieťových rast-modelov voči reálnym jazykovým sieťam</h2>
+<p><strong>Toto je pilier evaluácie siete</strong>: porovnávame <strong>štyri nulové modely</strong> so skutočnou word-adjacency sieťou na rovnakom počte uzlov / hrán. Odpovedáme na jedinú otázku: <strong>dokáže klasický rast-model reprodukovať štatistické vlastnosti reálnej jazykovej siete?</strong></p>
+<p><strong>Modely, ktoré porovnávame:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Ako funguje</th>
+<th>Čo testuje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Barabási–Albert (BA)</strong></td>
+<td>Preferenčné pripájanie — nový uzol sa pripojí k už-populárnym</td>
+<td>Stačí &quot;rich-get-richer&quot; na reprodukciu jazyka?</td>
+</tr>
+<tr>
+<td><strong>Dorogovtsev–Mendes (DM)</strong></td>
+<td>Pripájanie cez existujúcu hranu + triangle closure</td>
+<td>Stačí preferenčnosť + lokálna triangulácia?</td>
+</tr>
+<tr>
+<td><strong>Markov-synthetic</strong></td>
+<td>Generátor textu z 1. rádu prechodovej matice reálneho textu</td>
+<td>Zachytí 1-rádový Markov všetku štruktúru?</td>
+</tr>
+<tr>
+<td><strong>Shuffled null</strong></td>
+<td>Reálny text s náhodne permutovanými tokenmi</td>
+<td>Zostane niečo zo štruktúry keď rozbijeme poradie?</td>
+</tr>
+</tbody>
+</table>
+<p>Clustering porovnanie, en korpus (<a href="../ba_out_core/compare_real_vs_ba.csv">ba_out_core/compare_real_vs_ba.csv</a>, <a href="../dm_out_core/metrics_dm_summary.csv">dm_out_core/metrics_dm_summary.csv</a>, <a href="../markov_synth_out_core/markov_synth_summary.csv">markov_synth_out_core/markov_synth_summary.csv</a>):</p>
+<table>
+<thead>
+<tr>
+<th>model</th>
+<th>clustering</th>
+<th>γ exponent</th>
+<th>hodnotenie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Real</strong></td>
+<td>0.406</td>
+<td><strong>2.05</strong></td>
+<td>referencia</td>
+</tr>
+<tr>
+<td>Barabási–Albert</td>
+<td>0.011</td>
+<td>2.66</td>
+<td>clustering ~37× pod, γ príliš strmé</td>
+</tr>
+<tr>
+<td>Dorogovtsev–Mendes</td>
+<td>0.739</td>
+<td>2.73</td>
+<td>clustering ~2× nad, γ príliš strmé</td>
+</tr>
+<tr>
+<td>Shuffled null</td>
+<td>0.427</td>
+<td>(n/a)</td>
+<td>blízko v clusteringu, ale rozbitá sekvencia</td>
+</tr>
+<tr>
+<td><strong>Markov-synthetic</strong></td>
+<td><strong>0.456</strong></td>
+<td>(n/a)</td>
+<td><strong>najbližšie k realite</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Záver evaluácie:</strong> žiadny rast-model nereprodukuje súčasne <code>γ</code> aj <code>C</code>. BA a DM majú obe vlastnosti zlé, Markov-synth zachytáva clustering lebo zachováva bigramovú štruktúru.</p>
+<p><strong>Čo evaluácia overí</strong> (∧) <strong>a čo neprejde</strong> (×):</p>
+<table>
+<thead>
+<tr>
+<th>Vlastnosť</th>
+<th>BA</th>
+<th>DM</th>
+<th>Markov-synth</th>
+<th>Shuffled</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>avg degree</td>
+<td>≈</td>
+<td>≈</td>
+<td>≈</td>
+<td>≈</td>
+</tr>
+<tr>
+<td>avg clustering</td>
+<td>× (∞ nízke)</td>
+<td>× (vysoké)</td>
+<td>∧</td>
+<td>∧</td>
+</tr>
+<tr>
+<td>γ exponent P(k)</td>
+<td>×</td>
+<td>×</td>
+<td>(neporovnávané)</td>
+<td>(n/a)</td>
+</tr>
+<tr>
+<td>avg shortest path</td>
+<td>≈</td>
+<td>≈</td>
+<td>(neporovnávané)</td>
+<td>(n/a)</td>
+</tr>
+<tr>
+<td><strong>Kulig-efekt</strong> (interpunkcia ako hub)</td>
+<td><strong>×</strong></td>
+<td><strong>×</strong></td>
+<td><strong>neporovnávané</strong></td>
+<td><strong>×</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Otvorené:</strong> BA/DM/Markov-synth momentálne porovnávame cez <code>γ</code>, <code>C</code>, avg degree a SPL. <strong>Neporovnávame explicitne</strong> Kulig-špecifické metriky — teda či % top-30 hrán obsahujúcich interpunkciu je v modeli rovnaké ako v realite. To by bol logický ďalší test.</p>
+<p><strong>Obrázky:</strong></p>
+<p><img src="../combined_plots/clustering_effect_boxplot.png" alt="cluster_effect"></p>
+<p><em>Hlavný porovnávací boxplot: priemerný clustering všetkých 4 modelov vs. reálne siete, pre všetky 3 jazyky. Jasne vidno BA pod nulou, DM výrazne nad, Markov-synth prakticky prekrývajúci reálne boxy. Toto je jedno-obrázkové zhrnutie celej Sekcie 8.</em></p>
+<p><img src="../improved_plots/model_comparison/model_deltas.png" alt="model_deltas"></p>
+<p><em>Rozdielový barplot (model mínus realita) pre všetky 3 metriky × 4 modely × 3 jazyky. Stĺpce nad nulou = model preceňuje, pod nulou = podceňuje. Markov-synth má stĺpce najbližšie k nule.</em></p>
+<p><strong>Ďalšie obrázky:</strong></p>
+<ul>
+<li><a href="../improved_plots/model_comparison/compare_avg_clustering.png">compare_avg_clustering.png</a>, <a href="../improved_plots/model_comparison/compare_avg_degree.png">compare_avg_degree.png</a></li>
+<li><a href="../ba_out_core/plots/metrics_real_vs_ba_avg_clustering.png">ba_out_core/plots/metrics_real_vs_ba_avg_clustering.png</a>, <a href="../ba_out_core/plots/metrics_real_vs_ba_avg_degree.png">metrics_real_vs_ba_avg_degree.png</a>, <a href="../ba_out_core/plots/metrics_real_vs_ba_avg_shortest_path.png">metrics_real_vs_ba_avg_shortest_path.png</a></li>
+<li><a href="../ba_out_core/plots/degree_pk_real_vs_ba_en.png">ba_out_core/plots/degree_pk_real_vs_ba_en.png</a>, <a href="../ba_out_core/plots/degree_pk_real_vs_ba_de.png">degree_pk_real_vs_ba_de.png</a>, <a href="../ba_out_core/plots/degree_pk_real_vs_ba_nl.png">degree_pk_real_vs_ba_nl.png</a></li>
+<li><a href="../dm_out_core/plots/compare_avg_clustering.png">dm_out_core/plots/compare_avg_clustering.png</a>, <a href="../dm_out_core/plots/compare_avg_spl_dm_ba.png">compare_avg_spl_dm_ba.png</a></li>
+<li><a href="../dm_out_core/plots/degree_real_ba_dm_en.png">dm_out_core/plots/degree_real_ba_dm_en.png</a>, <a href="../dm_out_core/plots/degree_real_ba_dm_de.png">degree_real_ba_dm_de.png</a>, <a href="../dm_out_core/plots/degree_real_ba_dm_nl.png">degree_real_ba_dm_nl.png</a></li>
+<li><a href="../markov_synth_out_core/plots/compare_avg_clustering.png">markov_synth_out_core/plots/compare_avg_clustering.png</a>, <a href="../markov_synth_out_core/plots/compare_avg_degree.png">compare_avg_degree.png</a>, <a href="../markov_synth_out_core/plots/compare_n_edges.png">compare_n_edges.png</a></li>
+</ul>
+<hr>
+<h2 id="9-fáza-8--mfdfa--recurrence-time">9. Fáza 8 — MFDFA + recurrence time</h2>
+<p><strong>MFDFA</strong> na sekvencii dĺžok viet (<a href="../rankfreq_out_core/mfdfa/mfdfa_summary.csv">rankfreq_out_core/mfdfa/mfdfa_summary.csv</a>):</p>
+<table>
+<thead>
+<tr>
+<th>lang</th>
+<th>h(2)</th>
+<th>Δα (multifraktalita)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>en</td>
+<td>0.851</td>
+<td>2.47</td>
+</tr>
+<tr>
+<td>de</td>
+<td>0.871</td>
+<td>2.63</td>
+</tr>
+<tr>
+<td>nl</td>
+<td>0.838</td>
+<td><strong>0.58</strong></td>
+</tr>
+</tbody>
+</table>
+<p>→ Všetky tri majú perzistentné long-range korelácie (h(2) &gt; 0.5). Nemčina má najväčšiu multifraktalitu, <strong>holandčina prekvapivo monofraktálnejšia</strong>.</p>
+<p><strong>Prečo má holandčina tak odlišný tvar h(q)?</strong> — najčastejšia otázka k tomuto grafu.</p>
+<ul>
+<li><code>h(q)</code> je zovšeobecnený Hurstov exponent. Pre <strong>záporné q</strong> zdôrazňuje <strong>malé fluktuácie</strong> sekvencie, pre <strong>kladné q</strong> zdôrazňuje <strong>veľké fluktuácie</strong>. Keď je krivka <code>h(q)</code> <strong>strmá</strong> (EN, DE), znamená to, že rôzne amplitúdy fluktuácií sa škálujú rôzne → sekvencia je <strong>multifraktálna</strong>. Keď je <strong>plochá</strong> (NL), všetky amplitúdy sa škálujú rovnako → sekvencia je <strong>monofraktálna</strong>.</li>
+<li>Konkrétne: EN/DE dosahujú h(-5) ≈ 3.0–3.2 a pri q=+5 klesnú na ~0.75–0.85 → <strong>Δα = h_max − h_min ≈ 2.5</strong>. NL začína už len pri h(-5) ≈ 1.05 a mierne klesá na ~0.75 → <strong>Δα ≈ 0.58</strong>.</li>
+<li><strong>Interpretácia:</strong> sekvencia dĺžok viet v holandčine má <strong>homogénnejší režim</strong> — autori korpusu (DBNL, prevažne 19. stor. kanonické romány) miešajú krátke a dlhé vety menej dramaticky než Dickens/Kafka/Mann. Nie je tu silné „dýchanie&quot; medzi pomalými (opis) a rýchlymi (dialóg) pasážami, ktoré vytvára multifraktalitu.</li>
+<li><strong>Kontrola nejde o artefakt:</strong> počet viet (n ≈ 147 tis.) je pre MFDFA dostatočný, rovnaký ako EN/DE; hodnoty sú stabilné. Efekt je skutočný, nie šumový.</li>
+<li><strong>Otvorené:</strong> dalo by sa overiť na druhom holandskom korpuse (napr. moderná próza 20. stor.) či je to vlastnosť <strong>jazyka</strong> alebo <strong>konkrétneho DBNL výberu</strong>. Na to by bola potrebná ďalšia kniha kategórie.</li>
+</ul>
+<p><strong>Recurrence time</strong> (burstiness CV):</p>
+<ul>
+<li><code>,</code> a <code>.</code> sú <strong>sub-Poissonovské</strong> (CV &lt; 1, cca 0.8–1.0) — pravidelnejšie než náhodný proces, čo potvrdzuje &quot;dýchanie&quot; textu okolo priemernej dĺžky fráz/viet.</li>
+<li><code>:</code>, <code>;</code>, <code>!</code>, <code>?</code> sú vysoko <strong>bursty</strong> (CV 1.5–2.8) — objavujú sa v zhlukoch (dialógy, výkričníky po sebe), medzi zhlukmi dlhé prestávky.</li>
+</ul>
+<p><strong>Obrázky — MFDFA:</strong></p>
+<p><img src="../combined_plots/mfdfa_hq_overlay.png" alt="mfdfa_overlay"></p>
+<p><em>h(q) krivka pre en/de/nl, q ∈ [-5, +5]. EN a DE sa pre záporné q strmo dvíhajú → silná multifraktalita. NL ostáva takmer horizontálna → monofraktálny režim. Bodkovaná čiara h=0.5 = nekorelovaný biely šum. Všetky tri jazyky sú nad ňou = perzistentné korelácie.</em></p>
+<p><img src="../rankfreq_out_core/mfdfa/mfdfa_spectrum_en.png" alt="mfdfa_spectrum_en"></p>
+<p><em>Multifractal f(α) spektrum pre angličtinu — klasický &quot;inverted parabola&quot; tvar. Šírka v ose α (Δα) kvantifikuje multifraktalitu. Pre EN je to ~2.47. Analogické ploty pre de/nl ukazujú užší tvar u NL.</em></p>
+<p><strong>Ďalšie MFDFA ploty:</strong></p>
+<ul>
+<li><a href="../rankfreq_out_core/mfdfa/mfdfa_hq_en.png">mfdfa_hq_en.png</a>, <a href="../rankfreq_out_core/mfdfa/mfdfa_hq_de.png">mfdfa_hq_de.png</a>, <a href="../rankfreq_out_core/mfdfa/mfdfa_hq_nl.png">mfdfa_hq_nl.png</a></li>
+<li><a href="../rankfreq_out_core/mfdfa/mfdfa_spectrum_de.png">mfdfa_spectrum_de.png</a>, <a href="../rankfreq_out_core/mfdfa/mfdfa_spectrum_nl.png">mfdfa_spectrum_nl.png</a></li>
+<li><a href="../rankfreq_out_core/mfdfa/mfdfa_fluctuation_en.png">mfdfa_fluctuation_en.png</a>, <a href="../rankfreq_out_core/mfdfa/mfdfa_fluctuation_de.png">mfdfa_fluctuation_de.png</a>, <a href="../rankfreq_out_core/mfdfa/mfdfa_fluctuation_nl.png">mfdfa_fluctuation_nl.png</a></li>
+</ul>
+<p><strong>Obrázky — recurrence time:</strong></p>
+<ul>
+<li><img src="../combined_plots/recurrence_cv_overlay.png" alt="rec_cv"> — <a href="../combined_plots/recurrence_cv_overlay.png">combined_plots/recurrence_cv_overlay.png</a> (CV porovnanie tri jazyky)</li>
+<li><a href="../rankfreq_out_core/recurrence_time/burstiness_en.png">rankfreq_out_core/recurrence_time/burstiness_en.png</a>, <a href="../rankfreq_out_core/recurrence_time/burstiness_de.png">burstiness_de.png</a>, <a href="../rankfreq_out_core/recurrence_time/burstiness_nl.png">burstiness_nl.png</a></li>
+<li><a href="../rankfreq_out_core/recurrence_time/recurrence_ccdf_en.png">rankfreq_out_core/recurrence_time/recurrence_ccdf_en.png</a>, <a href="../rankfreq_out_core/recurrence_time/recurrence_ccdf_de.png">recurrence_ccdf_de.png</a>, <a href="../rankfreq_out_core/recurrence_time/recurrence_ccdf_nl.png">recurrence_ccdf_nl.png</a></li>
+<li><a href="../rankfreq_out_core/recurrence_time/recurrence_vs_freq_en.png">rankfreq_out_core/recurrence_time/recurrence_vs_freq_en.png</a>, <a href="../rankfreq_out_core/recurrence_time/recurrence_vs_freq_de.png">recurrence_vs_freq_de.png</a>, <a href="../rankfreq_out_core/recurrence_time/recurrence_vs_freq_nl.png">recurrence_vs_freq_nl.png</a></li>
+</ul>
+<hr>
+<h2 id="10-fáza-11--temporálna-analýza-dickens--fontane--couperus">10. Fáza 11 — Temporálna analýza (Dickens / Fontane / Couperus)</h2>
+<p><strong>Čo je IPI (inter-punctuation interval):</strong> vzdialenosť v počte slov medzi dvoma po sebe idúcimi interpunkčnými znakmi. Napr. veta <em>&quot;Peter, ktorého som včera stretol, sa smial.&quot;</em> generuje IPI sekvenciu <code>[1, 4, 2]</code> (1 slovo do čiarky, 4 do ďalšej čiarky, 2 do bodky). Pre celú knihu dostaneme tisíce takýchto čísel → <strong>distribúciu IPI</strong>, ktorú možno fitovať štatistickým modelom.</p>
+<p><strong>Primárny model — diskrétny Weibull</strong> (Stanisz et al. 2014, Kulig et al. 2016):
+$$P(X=k) = e^{-(k/\beta)^\alpha} - e^{-((k+1)/\beta)^\alpha}$$</p>
+<p>Dva parametre:</p>
+<ul>
+<li><strong>α</strong> (tvar): α &lt; 1 = sub-exponenciálny chvost (časté aj veľmi dlhé úseky), α = 1 = geometrické, α &gt; 1 = stlačený chvost</li>
+<li><strong>β</strong> (škála): charakteristická dĺžka úseku (~6–7 slov pre väčšinu kníh)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>autor</th>
+<th>α (early → mid → late)</th>
+<th>signal / noise¹</th>
+<th>AIC víťaz²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dickens</td>
+<td>1.45 → 1.62 → 1.56</td>
+<td><strong>5.71×</strong></td>
+<td>lognormal</td>
+</tr>
+<tr>
+<td>Couperus</td>
+<td>1.28 → 1.36 → <strong>0.99</strong></td>
+<td><strong>5.14×</strong></td>
+<td>Weibull (early, mid) / nbinom (late)</td>
+</tr>
+<tr>
+<td>Fontane</td>
+<td>1.59 → 1.67 → 1.72</td>
+<td>0.91× ← v šume</td>
+<td>nbinom</td>
+</tr>
+</tbody>
+</table>
+<p>¹ <strong>signal / noise ratio</strong> (pozri <a href="_baseline/signal_noise_ratio.csv">_baseline/signal_noise_ratio.csv</a>): pomer priemerného JSD medzi obdobiami (inter) a priemerného JSD medzi 3 oknami z tej istej knihy (intra). <strong>&gt; 1 znamená:</strong> medzi-obdobný drift je väčší než vnútro-knižný šum — teda autor sa naozaj mení. <strong>&lt; 1 znamená:</strong> pozorovaný &quot;drift&quot; je zamenený za normálnu variabilitu v rámci jednej knihy, nejde o skutočnú zmenu v čase. Fontane 0.91× = Fontaneho IPI je stacionárne, pozorovaný drift je artefakt šumu.</p>
+<p>² <strong>AIC víťaz</strong>: Akaike Information Criterion vyberá model s najlepším trade-off medzi fitom (log-likelihood) a počtom parametrov. Víťaz = model s minimálnym AIC.</p>
+<hr>
+<h3 id="101-čo-znamená-overené-300-bootstrapom">10.1 Čo znamená &quot;Overené 300× bootstrapom&quot;</h3>
+<p>Bootstrap je neparametrická technika na odhad <strong>neistoty</strong> parametrov <code>α</code> a <code>β</code>. Postup:</p>
+<ol>
+<li>Z reálneho IPI vektora (napr. 50 tis. hodnôt pre Pickwick Papers) vytiahneme náhodnú vzorku <strong>rovnakej veľkosti s opakovaním</strong> — tzv. resample.</li>
+<li>Na tento resample prefitujeme Weibull MLE, dostaneme (α*, β*).</li>
+<li>Opakujeme <strong>300×</strong> → dostaneme 300 dvojíc (α*, β*).</li>
+<li>Z týchto 300 vzoriek zoberieme <strong>2.5 a 97.5 percentil</strong> pre α a pre β → <strong>95 % CI</strong>.</li>
+</ol>
+<p>Tento CI <strong>nie je</strong> dôverný interval v klasickom parametrickom zmysle — hovorí: &quot;ak dáta pochádzajú z empirickej distribúcie, s pravdepodobnosťou 95 % by prefit parametrov padol do tohto rozsahu&quot;. Ak sa CI dvoch období <strong>neprekrývajú</strong>, je to silný dôkaz, že <code>α</code> alebo <code>β</code> sa naozaj zmenili. Dáta: <a href="_bootstrap/weibull_bootstrap.csv">_bootstrap/weibull_bootstrap.csv</a>.</p>
+<hr>
+<h3 id="102-model-comparison-aic--čo-sú-nbinom--lognormal--geometric-a-prečo-práve-tieto">10.2 Model comparison AIC — čo sú nbinom / lognormal / geometric a prečo práve tieto?</h3>
+<p>Fitovali sme <strong>štyri konkurenčné distribúcie</strong> na každú z 9 temporálnych kníh (<a href="_aic/model_comparison.csv">_aic/model_comparison.csv</a>):</p>
+<table>
+<thead>
+<tr>
+<th>Distribúcia</th>
+<th>Tvar</th>
+<th>Počet parametrov</th>
+<th>Prečo kandidát?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Weibull (discrete)</strong></td>
+<td>$e^{-(k/\beta)^\alpha} - e^{-((k+1)/\beta)^\alpha}$</td>
+<td>2 (α, β)</td>
+<td>Referenčný model zo Stanisz/Kulig; výklad α = tvarový index, β = charakteristická dĺžka</td>
+</tr>
+<tr>
+<td><strong>Negative binomial (nbinom)</strong></td>
+<td>$\binom{k+r-1}{k}(1-p)^r p^k$</td>
+<td>2 (r, p)</td>
+<td>Prirodzený model pre &quot;počkaj na r úspechov&quot;; dobre zachytí nad-dispersiu (var &gt; mean)</td>
+</tr>
+<tr>
+<td><strong>Lognormal (discrete)</strong></td>
+<td>$\frac{1}{k\sigma\sqrt{2\pi}}e^{-(\ln k-\mu)^2 / 2\sigma^2}$</td>
+<td>2 (μ, σ)</td>
+<td>Multiplikatívne procesy (kaskády vnorených fráz, podraďovacie vety) dávajú lognormal</td>
+</tr>
+<tr>
+<td><strong>Geometric</strong></td>
+<td>$(1-p)^{k-1}p$</td>
+<td>1 (p)</td>
+<td>Najjednoduchší možný baseline — bez pamäti, každé slovo má rovnakú pravdepodobnosť že bude nasledovať punct</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Príklad konkrétnych AIC hodnôt</strong> (Dickens, Pickwick Papers):</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>AIC</th>
+<th>ΔAIC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lognormal</td>
+<td>305 983.9</td>
+<td><strong>0.0</strong> (víťaz)</td>
+</tr>
+<tr>
+<td>nbinom</td>
+<td>311 419.1</td>
+<td>+5 435</td>
+</tr>
+<tr>
+<td>weibull</td>
+<td>312 562.2</td>
+<td>+6 578</td>
+</tr>
+<tr>
+<td>geometric</td>
+<td>324 752.3</td>
+<td>+18 768</td>
+</tr>
+</tbody>
+</table>
+<p>ΔAIC &gt; 10 znamená: prakticky úplná preferencia víťaza.</p>
+<hr>
+<h3 id="103-prečo-do-tohto-porovnania-nefitujeme-ba--markov-synth--random">10.3 Prečo do tohto porovnania nefitujeme BA / Markov-synth / random?</h3>
+<p>Veľmi dôležité rozlíšenie, lebo to znie, že ignorujeme predchádzajúce modely:</p>
+<ul>
+<li><strong>BA, DM, Markov-synth, shuffled</strong> sú <strong>modely topológie siete</strong> — generujú <strong>graf</strong> (uzly, hrany). Evaluujú sa proti reálnej sieti cez <code>γ</code>, <code>C</code>, avg degree, SPL (Sekcia 8).</li>
+<li><strong>Weibull, nbinom, lognormal, geometric</strong> sú <strong>modely 1D distribúcie</strong> — fitujú <strong>vektor čísel</strong> (IPI dĺžky). Evaluujú sa cez log-likelihood / AIC.</li>
+</ul>
+<p>Sú to <strong>dva nezávislé typy modelov s dvoma odlišnými doménami</strong>: nemôžeme fitovať BA na IPI vektor (BA nevie generovať číselnú postupnosť, iba graf) a nemôžeme fitovať Weibull na P(k) siete (je to iná premenná — degree uzla, nie vzdialenosť medzi punct). <strong>Obidve evaluácie v práci máme</strong>, len každá je v inej sekcii.</p>
+<p><strong>Alternatívne modely, ktoré by bolo možné pridať pre IPI</strong>, ak by školiteľka chcela rozšírenie:</p>
+<ul>
+<li>Generalized Pareto / power-law s exponenciálnym cut-off</li>
+<li>Gamma distribution (spojitý analóg nbinom)</li>
+<li>Zeta (diskrétny power-law)</li>
+<li>Compound Poisson / Poisson mixture</li>
+</ul>
+<p>Žiadny z nich v literatúre nie je konsenzuálny kandidát pre IPI; Weibull / nbinom / lognormal sú tie tri, čo uvádzajú Stanisz, Kulig a Altmann.</p>
+<p><strong>Ale — máme iné nulové modely pre IPI</strong> (memoryless baselines, Sekcia 10.4).</p>
+<hr>
+<h3 id="104-kulig-style-test-pre-ipi-memoryless-nulové-modely">10.4 Kulig-style test pre IPI: memoryless nulové modely</h3>
+<p>Dôvod prečo to robíme: Kulig/Stanisz tvrdia, že reálne IPI je Weibullovsky rozdelené s <code>α ≈ 1.5</code>, čo interpretujú ako &quot;proces s únavou&quot; (fatigue dynamics). <strong>Otázka:</strong> je ten <code>α &gt; 1</code> signál, alebo artefakt? Čo ak by rovnaký tvar vygeneroval aj proces bez pamäte? To je priama výzva Kuligovej tézy a tento test ju zodpovedá.</p>
+<p><strong>Nulové modely, ktoré testujeme:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Null</th>
+<th>Ako vzniká</th>
+<th>Očakávanie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Shuffled</strong></td>
+<td>Náhodná permutácia celej token-sekvencie. Ničí každé lokálne poradie vrátane pozícií interpunkcie.</td>
+<td>Pozície punct uniformne nahodné → IPI ≈ geometrické → Weibull <code>α ≈ 1</code></td>
+</tr>
+<tr>
+<td><strong>Bernoulli-punct</strong></td>
+<td>Slová zostanú v pôvodnom poradí, interpunkčné značky (zachovaný počet aj proporcie typov) sa náhodne rozmiestnia s pravdepodobnosťou <code>p = n_punct / n_tokens</code>.</td>
+<td>Pozície punct uniformne náhodné → IPI ≈ geometrické → <code>α ≈ 1</code></td>
+</tr>
+</tbody>
+</table>
+<p>Obidva sú &quot;memoryless&quot; v zmysle, že medzera medzi po sebe idúcimi punct značkami nezávisí od predchádzajúcej medzery. Rozdiel: Shuffled ničí aj sémantiku slov, Bernoulli ju necháva. Oba by mali dať rovnaký výsledok na IPI úrovni — ak áno, test je robustný na voľbe null-u.</p>
+<p><strong>Procedúra:</strong> pre každú z 9 temporálnych kníh, 50× regenerácia null-u → IPI → fit všetkých 4 distribúcií (Weibull / nbinom / lognormal / geometric) → AIC → bootstrap percentily <code>α</code>. Skript <a href="../scripts/11_temporal/kulig_baseline_test.py">scripts/11_temporal/kulig_baseline_test.py</a>, výstup v <code>temporal_out/_baseline/kulig_ipi_baseline_*.csv</code>.</p>
+<p><strong>Výsledky — Weibull shape parameter <code>α</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Kniha</th>
+<th>Rok</th>
+<th style="text-align:right">Real <code>α</code></th>
+<th style="text-align:right">Shuffled <code>α</code></th>
+<th style="text-align:right">Bernoulli <code>α</code></th>
+<th>Real AIC víťaz</th>
+<th style="text-align:right">ΔAIC(geom) vs real</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dickens — Pickwick Papers</td>
+<td>1836</td>
+<td style="text-align:right"><strong>1.450</strong></td>
+<td style="text-align:right">1.000 ± 0.004</td>
+<td style="text-align:right">1.000 ± 0.003</td>
+<td>lognormal</td>
+<td style="text-align:right">18 768</td>
+</tr>
+<tr>
+<td>Dickens — David Copperfield</td>
+<td>1850</td>
+<td style="text-align:right"><strong>1.625</strong></td>
+<td style="text-align:right">0.999 ± 0.003</td>
+<td style="text-align:right">1.000 ± 0.004</td>
+<td>lognormal</td>
+<td style="text-align:right">22 393</td>
+</tr>
+<tr>
+<td>Dickens — Our Mutual Friend</td>
+<td>1865</td>
+<td style="text-align:right"><strong>1.563</strong></td>
+<td style="text-align:right">1.000 ± 0.003</td>
+<td style="text-align:right">1.000 ± 0.004</td>
+<td>lognormal</td>
+<td style="text-align:right">18 810</td>
+</tr>
+<tr>
+<td>Fontane — L'Adultera</td>
+<td>1882</td>
+<td style="text-align:right"><strong>1.595</strong></td>
+<td style="text-align:right">0.999 ± 0.008</td>
+<td style="text-align:right">1.003 ± 0.009</td>
+<td>nbinom</td>
+<td style="text-align:right">2 499</td>
+</tr>
+<tr>
+<td>Fontane — Effi Briest</td>
+<td>1895</td>
+<td style="text-align:right"><strong>1.669</strong></td>
+<td style="text-align:right">1.000 ± 0.006</td>
+<td style="text-align:right">1.001 ± 0.005</td>
+<td>nbinom</td>
+<td style="text-align:right">6 456</td>
+</tr>
+<tr>
+<td>Fontane — Der Stechlin</td>
+<td>1898</td>
+<td style="text-align:right"><strong>1.716</strong></td>
+<td style="text-align:right">1.000 ± 0.006</td>
+<td style="text-align:right">1.001 ± 0.006</td>
+<td>nbinom</td>
+<td style="text-align:right">9 695</td>
+</tr>
+<tr>
+<td>Couperus — Eline Vere</td>
+<td>1889</td>
+<td style="text-align:right"><strong>1.280</strong></td>
+<td style="text-align:right">1.001 ± 0.004</td>
+<td style="text-align:right">1.000 ± 0.004</td>
+<td>weibull</td>
+<td style="text-align:right">2 897</td>
+</tr>
+<tr>
+<td>Couperus — Langs lijnen</td>
+<td>1900</td>
+<td style="text-align:right"><strong>1.358</strong></td>
+<td style="text-align:right">1.002 ± 0.007</td>
+<td style="text-align:right">1.002 ± 0.007</td>
+<td>weibull</td>
+<td style="text-align:right">1 963</td>
+</tr>
+<tr>
+<td>Couperus — De komedianten</td>
+<td>1917</td>
+<td style="text-align:right"><strong>0.994</strong> ⚠️</td>
+<td style="text-align:right">1.000 ± 0.004</td>
+<td style="text-align:right">1.000 ± 0.005</td>
+<td>nbinom</td>
+<td style="text-align:right"><strong>2.7</strong> ⚠️</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ako čítať túto tabuľku — riadok po riadku:</strong></p>
+<ul>
+<li><strong>Shuffled a Bernoulli dávajú identický výsledok</strong> (α = 1.000 ± 0.007 max). To potvrdzuje, že voľba null-u nemení výpoveď — obidve signalizujú &quot;memoryless&quot;.</li>
+<li><strong>Dickens a Fontane</strong> sú ≥ 50 štandardných odchýliek nad null-om. ΔAIC geometrickej distribúcie proti reálnemu víťazovi je v stovkách až desaťtisícoch — neprekonateľne veľký rozdiel, reálne dáta <em>nemôžu</em> byť produktom memoryless procesu.</li>
+<li><strong>Couperus Eline + Langs lijnen</strong> — slabšia signatúra, ale stále jasne odlíšiteľná (α = 1.28–1.36, ~50σ nad null-om, ΔAIC(geom) ~ 2000).</li>
+<li><strong>Couperus — De komedianten (1917)</strong> — jediná kniha, kde <strong>reálne <code>α = 0.994</code> je štatisticky neodlíšiteľné od null-u <code>α = 1.000 ± 0.004</code></strong>. ΔAIC(geom) = len 2.7 (dôkazná sila &quot;slabá&quot; v Kassovej škále &lt; 4). <em>Jediné ostatné reálne víťazi — nbinom (ΔAIC = 0) a weibull (ΔAIC = 3.3) — sú tiež štatisticky ekvivalentné s geometric.</em> <strong>Couperusov neskorý štýl je temporalne indistinguishable od náhodného procesu.</strong> Toto je najsilnejšia anomália v celom korpuse a predstavuje jednu z troch &quot;fresh&quot; zistení (Sekcia 12.5).</li>
+<li><strong>Víťaz AIC v null dátach</strong>: vo 100 % prípadov <code>geometric</code>. To kvantifikuje výpoveď &quot;null = memoryless&quot;.</li>
+</ul>
+<p><strong>Čo sa tým dokázalo:</strong> Weibullovský tvar IPI s <code>α &gt; 1</code> nie je artefakt. Je to reálna signatúra — jazyk (u 8/9 kníh) generuje pauzy medzi interpunkciami s <strong>pozitívnou závislosťou od minulosti</strong> (α &gt; 1 znamená sub-exponenciálny chvost, teda &quot;čím dlhšie sa neobjavuje interpunkcia, tým pravdepodobnejšie sa blíži&quot;). Náhodná permutácia túto závislosť zničí a IPI padá presne na <code>α = 1</code>.</p>
+<p><strong>Obrázky:</strong></p>
+<p><img src="_baseline/kulig_ipi_baseline_alpha.png" alt="kulig_baseline_alpha"></p>
+<p><em>Barplot Weibull <code>α</code> pre všetkých 9 kníh × 3 varianty (real / shuffled / bernoulli) so <code>95 %</code> bootstrap CI. Šedá prerušovaná čiara na <code>α = 1</code> = memoryless hranica. Vidno že 8 z 9 kníh má reálne pásmo jasne nad 1, zatiaľ čo obidva nully sedia presne na 1. Jediná výnimka je Couperus 1917 (posledný stĺpec vpravo), kde reálny bar splýva s null-ovými.</em></p>
+<p><img src="_baseline/kulig_ipi_baseline_hist_pickwick.png" alt="kulig_baseline_hist_pickwick"></p>
+<p><em>IPI histogram pre Pickwick Papers (real vs shuffled vs bernoulli), log-y škála. Tri krivky jasne oddelené: real má ťažší chvost (sub-exponenciálny pokles, Weibull α = 1.45), obidva nully sa zlievajú do exponenciálneho poklesu (α = 1.00). Vizuálne potvrdenie tabuľkového výsledku.</em></p>
+<hr>
+<p><strong>Validácia</strong> (robustnosť výsledkov):</p>
+<ul>
+<li><strong>300× bootstrap</strong> na všetkých 9 knihách → CI pre (α, β) pre každé obdobie.</li>
+<li><strong>Cross-author validácia Couperusa</strong> — pridali sme 2 ďalšie jeho knihy mimo pôvodnej trojice a overili, či <code>α</code> drift smer je ten istý.</li>
+<li><strong>Signal / noise baseline</strong> — intra-book JSD z 3 okien v jednej knihe ako nulová hypotéza šumu.</li>
+</ul>
+<p><strong>Obrázky (všetky v tomto priečinku <code>temporal_out/</code>):</strong></p>
+<p><img src="temporal_master.png" alt="master"></p>
+<p><em>Hlavný 3×3 obrázok. <strong>Riadky:</strong> Dickens / Fontane / Couperus. <strong>Stĺpce:</strong> drift α v čase (s bootstrap CI) / drift β v čase / ΔAIC pre 4 modely. Tu vidno tri odlišné príbehy v jednom obrázku: Dickens má jasný U-tvar α (rast potom mierny pokles), Couperus monotónny pokles α do sub-exponenciálnej hodnoty 0.99, Fontane prakticky plochý trend v rámci šumu (riadok 3, stĺpec 1 — CI sa prekrývajú).</em></p>
+<p><img src="_bootstrap/weibull_drift_with_ci.png" alt="weibull_drift_ci"></p>
+<p><em>Detail bootstrap CI pre (α, β) pre každé obdobie a každého autora. Každá bodka je bootstrap resample (300 na kniku), chybové úsečky = 2.5/97.5 percentilové pásmo. Prekrývajúce sa pásma = obdobia sú štatisticky neodlíšiteľné. Neprekrývajúce sa = reálny drift.</em></p>
+<p><img src="_aic/delta_aic.png" alt="delta_aic"></p>
+<p><em>ΔAIC barplot pre všetky 9 kníh × 4 modely. Stĺpec s ΔAIC = 0 je víťaz. Rozdiel &gt; 10 = veľmi silná preferencia. Pre Dickensa systematicky vyhráva lognormal, pre Fontaneho nbinom, pre Couperusa sa Weibull drží konkurencieschopný.</em></p>
+<p><img src="_baseline/signal_vs_noise.png" alt="signal_vs_noise"></p>
+<p><em>Signal / noise ratio ako barplot. Hranica 1.0 = drift je rovnaký ako vnútro-knižný šum. Dickens a Couperus sú jasne nad, Fontane pod. <strong>Toto je kľúčová kontrola kvality — bez nej by sme interpretovali šum ako reálny trend.</strong></em></p>
+<p><strong>Ďalšie temporálne ploty:</strong></p>
+<ul>
+<li><a href="temporal_ipi_histogram.png">temporal_ipi_histogram.png</a> — IPI histogramy všetkých 9 kníh + Weibull fit</li>
+<li><a href="temporal_ipi_weibull_logy.png">temporal_ipi_weibull_logy.png</a> — chvost distribúcie v log-y</li>
+<li><a href="temporal_js_divergence.png">temporal_js_divergence.png</a> — JSD medzi obdobiami</li>
+<li><a href="temporal_markov_heatmaps.png">temporal_markov_heatmaps.png</a> — Markov heatmapy per obdobie</li>
+<li><a href="temporal_network_metrics.png">temporal_network_metrics.png</a> — sieťové metriky v čase</li>
+<li><a href="temporal_punct_freq.png">temporal_punct_freq.png</a>, <a href="temporal_rankfreq.png">temporal_rankfreq.png</a>, <a href="temporal_recurrence_cv.png">temporal_recurrence_cv.png</a></li>
+<li><a href="_aic/aic_winners.png">_aic/aic_winners.png</a> — AIC víťaz per kniha</li>
+<li><a href="_baseline/intra_book_scatter.png">_baseline/intra_book_scatter.png</a> — intra-book scatter</li>
+<li><a href="_couperus_val/couperus_validation_alpha_beta.png">_couperus_val/couperus_validation_alpha_beta.png</a> — cross-author validácia</li>
+<li><a href="_cross/cross_ipi_overlay.png">_cross/cross_ipi_overlay.png</a>, <a href="_cross/cross_jsd_ipi.png">cross_jsd_ipi.png</a>, <a href="_cross/cross_metric_drift.png">cross_metric_drift.png</a>, <a href="_cross/cross_weibull_drift.png">cross_weibull_drift.png</a>, <a href="_cross/cross_zm_drift.png">cross_zm_drift.png</a></li>
+</ul>
+<hr>
+<h2 id="11-hlavný-výstup-a-evaluácia-implementačnej-časti">11. Hlavný výstup a evaluácia implementačnej časti</h2>
+<p><strong>Čo je hlavný výstup implementácie:</strong></p>
+<ol>
+<li><strong>Reprodukovateľná 11-fázová pipeline</strong> (<code>scripts/01_data → 11_temporal/</code>) so samostatnými CSV výstupmi v každej fáze → každé číslo v práci je odvoditeľné jedným skriptom.</li>
+<li><strong>Normalizovaný 3-jazykový korpus</strong>: 240 okien (80 kníh × 3 jazyky × 30 000 tokenov) + 9 temporálnych plných kníh pre 3 autorov.</li>
+<li><strong>Hlavný <code>temporal_master.png</code></strong> — 3×3 obrázok zhrňujúci celú temporálnu analýzu.</li>
+<li><strong>Dve nezávislé evaluačné vetvy</strong> — siete vs. rast-modely (Sekcia 8) a IPI vs. distribučné modely (Sekcia 10).</li>
+</ol>
+<hr>
+<h3 id="111-dva-piliere-evaluácie-modelov">11.1 Dva piliere evaluácie modelov</h3>
+<p>Práca testuje reálne dáta proti dvom <strong>oddeleným</strong> rodinám modelov, pretože ide o dva rozdielne objekty. <strong>Sieť</strong> (2D topológia: uzly + hrany) a <strong>IPI distribúcia</strong> (1D vektor čísel) sú matematicky nekompatibilné — sieťový model nevie generovať číselnú postupnosť a distribučný model nevie generovať graf. Preto máme pre každý z nich svoju vlastnú rodinu kandidátov a svoju vlastnú evaluačnú metriku.</p>
+<hr>
+<p><strong>Pilier A — Evaluácia modelov SIETE</strong> (Sekcia 8, 240 word-adjacency grafov):</p>
+<p>Otázka ktorú testujeme: <em>Dokáže niektorý štandardný generatívny model siete reprodukovať kľúčové štatistické vlastnosti reálnej jazykovej siete?</em> Porovnávame štyroch kandidátov voči reálnej referencii cez tri merateľné metriky: clustering <code>C</code>, power-law exponent <code>γ</code>, a &quot;Kulig-efekt&quot; (percento interpunkčných uzlov v top-30 hranách / top-20 uzloch).</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Reprodukuje <code>C</code>?</th>
+<th>Reprodukuje <code>γ</code>?</th>
+<th>Reprodukuje Kulig-efekt?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Barabási–Albert</td>
+<td>❌ (0.01 vs 0.41)</td>
+<td>❌ (2.66 vs 2.05)</td>
+<td>❌ (neporovnávané)</td>
+</tr>
+<tr>
+<td>Dorogovtsev–Mendes</td>
+<td>❌ (0.74 vs 0.41)</td>
+<td>❌ (2.73 vs 2.05)</td>
+<td>❌ (neporovnávané)</td>
+</tr>
+<tr>
+<td>Shuffled null</td>
+<td>✅ (0.43)</td>
+<td>—</td>
+<td>❌ (interpunkcia rozbitá)</td>
+</tr>
+<tr>
+<td>Markov-synthetic</td>
+<td>✅ (0.46)</td>
+<td>—</td>
+<td>⚠️ neporovnávané — možný rozširovací bod</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ako čítať túto tabuľku:</strong></p>
+<ul>
+<li><strong>BA stĺpec 1</strong> (0.01 vs 0.41): Barabási–Albert generuje siete s priemerným clusteringom okolo 0.01, kým reálny jazyk má 0.41. To je ~37× nižšie — masívny fail. BA teda nemá žiadnu lokálnu trojuholníkovú štruktúru, kým reálny text ju má dosť. Je to konzistentné so známym nálezom, že čisté preferenčné pripájanie nevytvára kliky.</li>
+<li><strong>DM stĺpec 1</strong> (0.74 vs 0.41): Dorogovtsev–Mendes robí pravý opak — cez triangle closure vytvára <em>príliš veľa</em> trojuholníkov (~2× nad realitou). Teda je overclustered.</li>
+<li><strong>BA/DM stĺpec 2</strong> (γ 2.66–2.73 vs 2.05): obidva modely dávajú strmšie chvosty degree distribúcie než reálny text. Reálny text má &quot;tlstšie&quot; chvosty — väčšiu šancu na extrémne degree uzly. Zase konzistentné s tým, že reálny jazyk má prirodzené hub-y (interpunkcia, členy, pomocné slovesá).</li>
+<li><strong>Shuffled stĺpec 1</strong> (0.43): keď zoberieme reálny text a preusporiadame tokeny náhodne, clustering ostane podobný (0.43 vs 0.41). To znamená, že clustering nie je primárne o <em>poradí</em> slov ale o samotnej distribúcii slov — dostatok vysokofrekvenčných slov (the, a, punct) stačí na to, aby sa stretli v trojuholníkoch.</li>
+<li><strong>Markov-synth stĺpec 1</strong> (0.46): 1. rádový Markov-generátor (zachováva bigramy) je najbližšie k realite. To je <em>očakávané</em> — ak model zachováva bigramy, nutne zachováva aj edge sety word-adjacency siete, a tým aj clustering. Paradoxne je to však <strong>triviálne</strong> pozitívny výsledok — Markov-synth &quot;vyhráva&quot; preto, lebo takmer kopíruje reálnu sieť po konštrukcii.</li>
+<li><strong>Stĺpec 3 (Kulig-efekt)</strong>: toto je ten test, ktorý aktuálne <strong>neporovnávame priamo</strong>. Vieme, že v reálnej sieti je 50 % en top-30 hrán s punct a 87 % pri de. Nevieme, koľko to je v BA/DM/Markov-synth sieťach. Pre BA/DM je to aj metodologicky problematické (nemajú labely), pre Markov-synth by to technicky šlo (ak by sme rerunnuli generáciu).</li>
+</ul>
+<p><strong>Súhrn piliera A:</strong> žiadny sieťový model neprejde všetkými troma testami súčasne. BA a DM padnú na <code>C</code> aj <code>γ</code>. Shuffled prejde cez <code>C</code> len zdanlivo (rovnaký multiset slov = rovnaká topológia bez ohľadu na poradie). Markov-synth prejde triviálne lebo zachováva bigramy. Nikto z nich neukazuje, <strong>ako</strong> reálny text generuje svoju štruktúru — len ukazujú, čo na to nestačí.</p>
+<hr>
+<p><strong>Pilier B — Evaluácia modelov IPI DISTRIBÚCIE</strong> (Sekcia 10, 9 temporálnych kníh × 4 modely):</p>
+<p>Otázka: <em>Ktorá 1D distribučná rodina najlepšie fituje reálnu distribúciu IPI — vzdialeností medzi po sebe idúcimi interpunkčnými znakmi?</em> Porovnávame štyri kandidátky cez AIC (Akaike Information Criterion) na 9 knihách (3 autori × 3 obdobia):</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Víťaz u Dickensa</th>
+<th>u Fontaneho</th>
+<th>u Couperusa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weibull (diskrétny)</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ (early, middle)</td>
+</tr>
+<tr>
+<td>Negative binomial</td>
+<td>❌</td>
+<td>✅ (všetky 3 obdobia)</td>
+<td>✅ (late)</td>
+</tr>
+<tr>
+<td>Lognormal</td>
+<td>✅ (všetky 3 obdobia)</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Geometric</td>
+<td>❌ (vždy najhoršie)</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ako čítať túto tabuľku:</strong></p>
+<ul>
+<li><strong>Dickens stĺpec</strong> (lognormal vo všetkých 3 obdobiach): Dickensove dialógy + dlhé opisné pasáže generujú IPI s <em>ťažkým chvostom</em> typickým pre multiplikatívne procesy (vnorené frázy, vedľajšie vety). Lognormal zachytáva toto lepšie než Weibull, lebo Weibull má stlačený exponenciálny chvost zatiaľčo lognormal má logaritmický.</li>
+<li><strong>Fontane stĺpec</strong> (nbinom): Fontaneho realizmus v Effi Briest a Der Stechlin generuje nad-dispersívnu distribúciu (var &gt; mean, ale nie tak extrémne ako Dickens). Negative binomial je prirodzený model pre &quot;čakaj na r úspechov&quot; a zachytáva to najlepšie.</li>
+<li><strong>Couperus stĺpec</strong> (Weibull + nbinom): Couperus sa najviac drží Weibull predpovede — <strong>jediný autor</strong>, u ktorého Weibull vyhráva aspoň v 2 z 3 období. V neskorej fáze (De komedianten, 1917) sa štýl posúva a nbinom prevezme vedenie. Dôležité: Weibull bol historicky &quot;kanonický&quot; model pre IPI (Stanisz 2014, Kulig 2016) — naše zistenie ho relativizuje.</li>
+<li><strong>Geometric riadok</strong> (vždy posledné): geometrické rozdelenie (bez pamäti) vždy prehráva s obrovským ΔAIC &gt; 2000. To znamená, že IPI <strong>má pamäť</strong> — keď ste práve videli čiarku, pravdepodobnosť ďalšej nie je konštantná. Je to najjednoduchší pozitívny nález tohto piliera.</li>
+</ul>
+<p><strong>Súhrn piliera B:</strong> <strong>Žiadny univerzálny víťaz neexistuje</strong>. Rôzni autori generujú IPI s rôznymi tvarmi chvostov, čo vyžaduje rôzne distribúcie. Weibull — napriek tomu, že je v literatúre najčastejšie uvádzaný — nie je dominantný. Je to nový, neočakávaný nález: Kulig et al. 2016 naznačujú, že Weibull je &quot;univerzálny&quot;, ale na našom 3-jazykovom vzorke to neplatí. To je obhájiteľný príspevok, nie slabosť.</p>
+<hr>
+<p><strong>Oba piliere ukazujú to isté na meta-úrovni:</strong> jednoduché/klasické modely nereprodukujú celú bohatosť jazyka. Ani BA/DM (pilier A) ani čisté Weibull (pilier B) nie sú univerzálni víťazi. To je intelektuálne čestný výsledok — žiadny magický model neexistuje, každý zachytáva len niektorú os reality. Pre DP je dôležité, že obidva piliere sú <strong>kvantifikované</strong>, nie len kvalitatívne konštatované.</p>
+<hr>
+<h3 id="112-ako-konkrétne-evaluujeme-3-nezávislé-kontroly-pre-temporal-ipi">11.2 Ako konkrétne evaluujeme (3 nezávislé kontroly pre temporal IPI)</h3>
+<p>Temporálny pilier má špecifickú komplikáciu: keď vidíme, že Dickensove <code>α</code> vychádza inak v Pickwick Papers (1836) než v Our Mutual Friend (1865), je to <strong>reálna zmena štýlu v čase</strong>, alebo iba <strong>šum</strong> z toho, že dve konkrétne knihy sú jednoducho iné? Aby sme odpovedali, zaviedli sme <strong>štyri nezávislé kontroly</strong>, z ktorých každá odpovedá inú časť otázky:</p>
+<table>
+<thead>
+<tr>
+<th>Kontrola</th>
+<th>Na čo odpovedá</th>
+<th>Realizácia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Signal / noise ratio</strong></td>
+<td>Je medzi-obdobný drift väčší než vnútro-knižný šum?</td>
+<td><a href="_baseline/signal_noise_ratio.csv">_baseline/signal_noise_ratio.csv</a> — 3 okná / kniha, JSD medzi knihami vs. medzi oknami</td>
+</tr>
+<tr>
+<td><strong>Bootstrap 95 % CI</strong></td>
+<td>Sú α, β v rôznych obdobiach štatisticky odlíšiteľné?</td>
+<td><a href="_bootstrap/weibull_bootstrap.csv">_bootstrap/weibull_bootstrap.csv</a> — 300 resamples</td>
+</tr>
+<tr>
+<td><strong>AIC model comparison</strong></td>
+<td>Je Weibull vôbec najlepší model, alebo iný?</td>
+<td><a href="_aic/model_comparison.csv">_aic/model_comparison.csv</a> — 4 modely × 9 kníh</td>
+</tr>
+<tr>
+<td><strong>Cross-author validácia</strong></td>
+<td>Dajú sa Couperusove trendy zopakovať na 2 extra knihách?</td>
+<td><a href="_couperus_val/">_couperus_val/</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ako čítať túto tabuľku — prečo práve tieto štyri kontroly?</strong></p>
+<p>Každá z nich odpovedá na <strong>inú úroveň pochybnosti</strong>, ktorú by mohol vzniesť oponent pri obhajobe:</p>
+<ol>
+<li>
+<p><strong>Signal / noise ratio</strong> — najdôležitejšia kontrola. Oponent sa spýta: <em>&quot;Nie je to, čo voláte 'drift', len bežná vnútro-knižná variabilita?&quot;</em> Aby sme odpovedali, rozsekneme každú knihu na <strong>3 rovnako veľké okná</strong> a spočítame JSD medzi nimi (= intra-book šum). Potom to porovnáme s JSD medzi celými knihami rôznych období (= inter-book signál). Ak je <code>inter / intra &gt; 1</code>, signál prevyšuje šum, a drift je reálny. <strong>Dickens 5.71× a Couperus 5.14×</strong> jasne prechádzajú, <strong>Fontane 0.91× prepadáva</strong> — jeho &quot;drift&quot; je v skutočnosti pod úrovňou vnútro-knižnej variability. Toto je jediná kontrola, ktorá by sama osebe zablokovala Fontaneho ako validný príklad — a pravidelne ignorovať ju je štandardná chyba v podobných prácach.</p>
+</li>
+<li>
+<p><strong>Bootstrap 95 % CI</strong> — odpovedá na otázku: <em>&quot;Aj keď drift prejde signal/noise testom, ako presne vieme <code>α</code> pre každé obdobie?&quot;</em> Bez CI by sme vo výsledku napísali &quot;α = 1.45 → 1.62&quot;, čo znie presne, ale mohlo by byť ±0.2. Bootstrap dá konkrétne pásmo (typicky ±0.02 pre <code>α</code>, ±0.05 pre <code>β</code>), a ak sa pásma dvoch období <strong>neprekrývajú</strong>, je to silný dôkaz. Pre Dickensovo <code>α</code> medzi early a middle sa CI <strong>vôbec neprekrývajú</strong> — rozdiel je kryštálovo štatisticky významný.</p>
+</li>
+<li>
+<p><strong>AIC model comparison</strong> — odpovedá na otázku: <em>&quot;A je vôbec Weibull správny model, alebo nútime čísla do nevhodnej škatule?&quot;</em> Keby sme Weibull len odpisovali od Stanisz 2014, oponent môže namietať &quot;to je len predpoklad&quot;. AIC formálne porovná Weibull s 3 konkurentmi na tých istých dátach a povie, ktorý model je preferovaný. Výsledok — že Weibull <em>nie je</em> vždy víťaz — paradoxne posilňuje prácu: ukazuje, že sme to seriózne testovali, nie len predpokladali. Je lepšie mať negatívny kontrolný výsledok než chýbajúcu kontrolu.</p>
+</li>
+<li>
+<p><strong>Cross-author validácia</strong> — odpovedá na otázku: <em>&quot;Tých 9 kníh ste vybrali hocijako — možno trend, ktorý vidíte u Couperusa, je artefakt výberu troch konkrétnych kníh?&quot;</em> Aby sme to vyvrátili, vzali sme <strong>2 ďalšie Couperusove knihy mimo pôvodnej trojice</strong> a skontrolovali, či <code>α</code> drift ide tým istým smerom. Ak áno, trend nie je artefaktom výberu. Ak nie, museli by sme ho označiť za náhodný.</p>
+</li>
+</ol>
+<p><strong>Čo táto tabuľka ukazuje ako celok:</strong> nemáme jednu centrálnu štatistiku, ktorá by rozhodla, či drift je reálny. Máme <strong>štyri ortogonálne pohľady</strong>, z ktorých každý kontroluje inú chybu. Dickens a Couperus prechádzajú všetkými štyrmi. Fontane prejde troma (bootstrap CI, AIC, cross — hoci cross preňho nerobíme), ale zlyhá na signál/šum. <strong>To znamená, že Fontaneho &quot;drift&quot; je pravdepodobne artefakt,</strong> a práca to čestne priznáva namiesto toho, aby ho predala ako výsledok.</p>
+<p>Pre sieťový pilier (Sekcia 8) je evaluácia priamočiarejšia: pre každú metriku (<code>C</code>, <code>γ</code>, avg degree, SPL) spočítame priemer a 95 % CI z 80 kníh × 10 resamples modelov, potom pozrieme, či sa intervaly prekrývajú. Nepotrebujeme signal/noise kontrolu, lebo 80 kníh je dosť na to, aby sme medzi-knižnú variabilitu odhadli priamo.</p>
+<hr>
+<h3 id="113-kvantitatívne-číselné-zistenia-do-abstraktu">11.3 Kvantitatívne číselné zistenia (do abstraktu)</h3>
+<ul>
+<li>Power-law degree exponent <code>γ</code>: <strong>Real 2.00–2.05</strong> vs. BA 2.62–2.72 vs. DM 2.65–2.73 (odchýlka modelov o ~30 %).</li>
+<li>Clustering siete: <strong>Real 0.32–0.41</strong>, BA ~0.01 (37× pod), DM ~0.74 (2× nad), Markov-synth <strong>0.44–0.46 (najbližšie)</strong>.</li>
+<li>JSD medzi jazykmi: de–nl <strong>0.026</strong> (najbližšie), de–en <strong>0.071</strong> (najvzdialenejšie).</li>
+<li>Kulig-efekt: <strong>+6 uzlov (interpunkcia) = +0.08 až +0.10</strong> v priemernom clusteringu celej siete.</li>
+<li>Dickens <code>α</code> drift: 1.45 → 1.62 → 1.56 (signal / noise = <strong>5.71×</strong>, pozorovateľný).</li>
+<li>Fontane <code>α</code> drift: 1.59 → 1.67 → 1.72 (signal / noise = <strong>0.91×</strong>, nepozorovateľný nad šumom — dôležitý negatívny výsledok).</li>
+</ul>
+<hr>
+<h3 id="114-výsledok-evaluácie--čo-sme-dokázali-čo-zostáva-otvorené">11.4 Výsledok evaluácie — čo sme dokázali, čo zostáva otvorené</h3>
+<p>Toto je najdôležitejšia tabuľka prezentácie — koncentruje všetky naše hypotézy do jedného pohľadu. Pre každú hypotézu máme <em>verdikt</em> (✅ potvrdené / ❌ vyvrátené / ⚠️ otvorené) a <em>konkrétny dôkaz</em> z predchádzajúcich sekcií.</p>
+<table>
+<thead>
+<tr>
+<th>Hypotéza</th>
+<th>Verdikt</th>
+<th>Dôkaz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Power-law v degree distribúcii existuje</td>
+<td>✅ potvrdené</td>
+<td>γ ≈ 2.0, R² &gt; 0.99 na orezanej lineárnej oblasti</td>
+</tr>
+<tr>
+<td>Klasické sieťové rast-modely reprodukujú realitu</td>
+<td>❌ vyvrátené</td>
+<td>BA / DM sú mimo clusteringu aj γ (Pilier A)</td>
+</tr>
+<tr>
+<td>Interpunkcia je topologicky dominantná (Kulig)</td>
+<td>✅ potvrdené naprieč 3 jazykmi</td>
+<td>top-30 hrán: 50 % en, 87 % de obsahuje punct</td>
+</tr>
+<tr>
+<td>Sieťové modely reprodukujú Kulig-efekt</td>
+<td>⚠️ neporovnávané</td>
+<td>Možný ďalší krok: zmerať % punct v top-nodoch BA/Markov-synth sietí</td>
+</tr>
+<tr>
+<td>IPI je medzi-obdobne stacionárne</td>
+<td>⚠️ čiastočne vyvrátené</td>
+<td>Dickens + Couperus drift nad šumom, Fontane nie</td>
+</tr>
+<tr>
+<td>Weibull je najlepší model IPI</td>
+<td>⚠️ len čiastočne</td>
+<td>AIC víťazí u Couperusa; u Dickensa vyhráva lognormal, u Fontaneho nbinom (Pilier B)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ako čítať túto tabuľku — tri kategórie výsledkov:</strong></p>
+<p><strong>Kategória 1: Potvrdené hypotézy (✅)</strong> — to sú solidné pozitívne nálezy, s ktorými ide práca do obhajoby ako s hlavnými príspevkami. <em>Power-law s γ ≈ 2.0</em> je metodologicky čistý — log-bin fit na orezanej lineárnej oblasti dáva R² &gt; 0.99 pre všetky tri jazyky, čo je veľmi silný fit. <em>Kulig-efekt</em> je potvrdený tromi nezávislými meraniami (top-20 uzlov, top-30 hrán, words vs words+punct clustering) — je to najsilnejšie pozitívne zistenie práce.</p>
+<p><strong>Kategória 2: Vyvrátené hypotézy (❌)</strong> — sú rovnako cenné ako potvrdené, lebo v DP hovoria &quot;testovali sme aj to, čo neprešlo&quot;. <em>Klasické rast-modely neprejdú</em> — BA je o dva rády v clusteringu nižší, DM 2× vyšší, obe γ o ~30 % strmšie. Toto by bolo samo osebe dostatočné na publikovateľný nález (aj keď replika známeho poznatku).</p>
+<p><strong>Kategória 3: Čiastočne alebo neotestované (⚠️)</strong> — toto je najchúlostivejšia časť a treba ju v obhajobe vedieť čestne predať. Sú tu tri rôzne dôvody pre ⚠️:</p>
+<ol>
+<li>
+<p><em><strong>&quot;Sieťové modely reprodukujú Kulig-efekt&quot;</strong></em> je <strong>neotestované</strong> lebo pre BA/DM to metodologicky nemôžeme spraviť (nemajú labely uzlov), a pre Markov-synth by sme museli modifikovať pipeline. Oponent môže toto vytknúť a odpoveď je: &quot;áno, pre BA/DM nie je tento test definovaný; pre Markov-synth ho môžeme doplniť, ak by to recenzia požadovala.&quot; Môžeme to predpripraviť ako future work.</p>
+</li>
+<li>
+<p><em><strong>&quot;IPI je medzi-obdobne stacionárne&quot;</strong></em> je <strong>čiastočne vyvrátené</strong> — vyvrátené pre Dickensa a Couperusa (drift nad šumom), potvrdené pre Fontaneho (drift v šume). Dôležité: Fontaneho výsledok <strong>nie je zlyhanie metódy</strong>, ale legitímny negatívny nález — ukazuje, že bez kontroly signál/šum by sa dalo ľahko vyhlásiť falošný trend. Obhajoba tohto nálezu je silnou stránkou práce, nie slabou.</p>
+</li>
+<li>
+<p><em><strong>&quot;Weibull je najlepší model IPI&quot;</strong></em> je <strong>len čiastočne potvrdené</strong> — ide proti očakávaniu zo Stanisz/Kulig, kde je Weibull prezentovaný ako univerzálny. Obhajoba: &quot;univerzalita Weibullu nie je v našich dátach podporená; Weibull je interpretovateľný (α = tvarový index), ale AIC preferuje lognormal u Dickensa a nbinom u Fontaneho. To nie je ani potvrdenie ani vyvrátenie — je to <strong>relativizácia</strong> literatúrneho konsenzu na našom korpuse.&quot;</p>
+</li>
+</ol>
+<p><strong>Zhrnutie:</strong> z 6 hypotéz máme 2 jasne potvrdené, 1 jasne vyvrátenú a 3 s čiastočným / otvoreným výsledkom. Pre DP je to zdravá bilancia — príliš veľa ✅ by oponent vnímal ako nekritické, príliš veľa ❌ ako neúspech. Mix ukazuje, že práca naozaj niečo testuje.</p>
+<hr>
+<h2 id="12-kľúčové-zistenia-cross-cutting">12. Kľúčové zistenia (cross-cutting)</h2>
+<ol>
+<li><strong>Jazykové rozdiely sú štatisticky detegovateľné</strong> naprieč viacerými metrikami: interpunkcia, Markov JSD, Zipfovo α, sieťový clustering, MFDFA.</li>
+<li><strong>de a nl sú si štruktúrne blízko</strong>, en tvorí samostatnú skupinu (potvrdené JSD + clustering + Zipf).</li>
+<li><strong>Interpunkcia je topologicky dominantná</strong> (Kulig-efekt) — 6 punct uzlov zvýši clustering siete o +0.08–0.10, 50–87 % top-hrán obsahuje punct.</li>
+<li><strong>Náhodné / preferenčné rast modely nestačia</strong> — Markov-synthetic je jediná generatívna nulová hypotéza, ktorá sa približuje reálnemu clusteringu a exponentu γ ≈ 2.0.</li>
+<li><strong>IPI distribúcia nie je striktne stacionárna</strong> — u Dickensa a Couperusa je reálny medzi-obdobný drift potvrdený bootstrap CI aj signal/noise testom; u Fontaneho je &quot;drift&quot; v rámci vnútroknižného šumu (dôležitá metodická lekcia).</li>
+<li><strong>Weibull nie je univerzálny víťaz</strong> pri AIC porovnaní — pre viaceré korpusy ho predbieha lognormal alebo negatívny binomický. Používa sa hlavne pre interpretovateľnosť (α, β).</li>
+<li><strong>Fit-okno sa musí starostlivo vyberať</strong> — pre ZM aj pre power-law degree fit (orezanie hlavy a chvosta), inak výsledky skresľujú finite-size efekty a jedno-pozorovacové biny.</li>
+</ol>
+<p><strong>Zhrnutie — cross-cutting obrázky:</strong></p>
+<ul>
+<li><img src="../combined_plots/dashboard_summary.png" alt="dashboard"> — <a href="../combined_plots/dashboard_summary.png">combined_plots/dashboard_summary.png</a> <strong>(hlavný dashboard)</strong></li>
+<li><a href="../combined_plots/exponents_comparison.png">combined_plots/exponents_comparison.png</a> — všetky exponenty vedľa seba</li>
+<li><a href="../combined_plots/node_level_overlay.png">combined_plots/node_level_overlay.png</a> — node-level distribúcie</li>
+</ul>
+<hr>
+<h2 id="13-novelty--čím-sa-práca-odlišuje-od-kuligstaniszaltmann">13. Novelty — čím sa práca odlišuje od Kulig/Stanisz/Altmann</h2>
+<p>Vyslovená obava: aby práca nebola len replikáciou. Tu je mapa <strong>čo je naše a prečo to Kulig/Stanisz neurobili</strong>. Každé zistenie je viazané na konkrétny obrázok alebo tabuľku v prezentácii — to sú kandidáti na „fresh&quot; príspevky, ktoré by oponent nemal nájsť v predchádzajúcich prácach.</p>
+<h3 id="131-couperus-1917-anomália--prvá-zdokumentovaná-ipi-de-correlation-v-literárnom-korpuse">13.1 Couperus-1917 anomália — prvá zdokumentovaná IPI de-correlation v literárnom korpuse</h3>
+<p><strong>Zistenie:</strong> &quot;De komedianten&quot; (Couperus, 1917) je jediná kniha v 9-knižnom temporálnom korpuse, ktorá má <strong>Weibull <code>α = 0.994 ± 0.000</code></strong> — štatisticky neodlíšiteľné od memoryless nulového modelu (<code>α = 1.000 ± 0.004</code>). ΔAIC medzi reálnou Weibull / nbinom / geometric je menej ako 4, čo je v Kassovej škále &quot;slabá dôkazná sila&quot; — t.j. geometric je rovnako dobrý ako Weibull. Zároveň je to jediná Couperusova kniha z troch, kde Weibull <strong>nie je</strong> AIC víťaz (predtým Eline Vere a Langs lijnen → Weibull, teraz → nbinom/geometric).</p>
+<p><strong>Čo robí Kulig/Stanisz:</strong> fitujú Weibull na <strong>agregovaný</strong> korpus (desiatky kníh spolu) a reportujú globálne <code>α ≈ 1.5</code>. Nikdy nepozerajú na <strong>jednotlivé knihy</strong> ani na <strong>temporálne drifty</strong> v rámci jedného autora. Takúto lokalizovanú stratu pamäte teda nemohli objaviť — aj keby bola v ich dátach, rozpustili by ju v priemere.</p>
+<p><strong>Čo z toho robíme:</strong> fenomén interpretujeme ako <strong>fázový prechod v autorovom štýle</strong>. Couperus má dokumentované prerušenie písania medzi 1915 a 1917 (prechod od psychologických romanov k dialóg-ťažkým hrám ako <em>De komedianten</em>). Tá istá kniha je <strong>jediná v korpuse, ktorá má tiež najnižšiu Weibull <code>β = 3.70</code></strong> (priemerná dĺžka medzi interpunkciami) — syntakticky staccato štýl. Tri nezávislé metriky (<code>α → 1</code>, <code>β ↓</code>, AIC víťaz zmenený) potvrdzujú rovnaký jav.</p>
+<p><strong>Prečo je to publikovateľné:</strong> v literatúre o punct-statistics sa nikto nezaoberá <strong>vnútro-autorskou temporálnou de-corelation</strong> na úrovni <code>α</code>. Najbližšie (Altmann et al. 2009) skúma žánrové rozdiely v rovnakej knihe, nie kariérny drift. Kulig-ovský rámec tu naše dáta rozširujú.</p>
+<p><strong>Kandidáti na obrázky:</strong> <a href="_baseline/kulig_ipi_baseline_alpha.png">_baseline/kulig_ipi_baseline_alpha.png</a> (posledný stĺpec vpravo — real splýva s nulom), <a href="_bootstrap/weibull_drift_with_ci.png">_bootstrap/weibull_drift_with_ci.png</a> (Couperusov riadok — dramatický pokles).</p>
+<hr>
+<h3 id="132-cross-metric-konvergencia-monofraktalita--memoryless-ipi-u-nl-couperusa">13.2 Cross-metric konvergencia: monofraktalita ↔ memoryless IPI u NL Couperusa</h3>
+<p><strong>Zistenie:</strong> Nizozemský korpus má v MFDFA <code>Δα = 0.58</code> (najmenej zo všetkých troch jazykov — en má 2.47, de 2.63). Najnižšia <code>Δα</code> znamená <strong>najmenšiu multifraktalitu</strong>, teda najhomogénnejšiu štruktúru dĺžok viet. <strong>Nezávisle</strong> (iná metrika, iná škála, iné dáta) Couperus neskorý má Weibull <code>α → 1</code>, t.j. <strong>najmenšiu pamäť v IPI</strong>.</p>
+<p><strong>Hypotéza:</strong> oba tieto javy sú prejavy toho istého — Couperusov korpus (a nl ako celok v našom vzorke) má <strong>slabšiu dlhodobú korelačnú štruktúru</strong> než en/de. Monofraktalita (Δα nízke) a memoryless IPI (α ≈ 1) sú <strong>dva pohľady na rovnaký podklad</strong>: v multifraktálnej reči sú to dve rôzne škály ale rovnaký fyzikálny jav.</p>
+<p><strong>Čo robí Kulig/Stanisz:</strong> MFDFA a Weibull fitovanie majú ako <strong>paralelné, nekorelované</strong> metriky. Nikto neukazuje formálny vzťah medzi <code>Δα</code> (MFDFA) a Weibull <code>α</code> (IPI).</p>
+<p><strong>Čo z toho robíme:</strong> navrhnúť vzťah — ak máme viacero kníh v ďalšej iterácii, urobiť scatter <code>Δα</code> vs Weibull <code>α</code> a ukázať, či existuje korelácia. To je konkrétny empirický príspevok nad rámec replikácie.</p>
+<p><strong>Riziko:</strong> iba dva jazyky (en/de) s <code>Δα &gt; 2</code> a jeden (nl) s nízkym Δα je <strong>slabé n na formálnu koreláciu</strong>. Treba to prezentovať ako &quot;observation + hypothesis&quot;, nie &quot;finding&quot;. Úprimnejšie aj bezpečnejšie pre obhajobu.</p>
+<hr>
+<h3 id="133-lognormal-ako-primárny-model-pre-dickensa--priamy-contradiction-voči-weibull-univerzalite">13.3 Lognormal ako primárny model pre Dickensa — priamy contradiction voči Weibull-univerzalite</h3>
+<p><strong>Zistenie:</strong> Všetky tri Dickensove knihy (1836, 1850, 1865) majú ako AIC víťaza <strong>lognormal</strong>, nie Weibull. ΔAIC rozdiel je od 1 170 (David Copperfield) po 6 578 (Pickwick Papers) — <strong>extrémne silná</strong> dôkazná sila pre lognormal. Weibull má rank 2–3 vo všetkých prípadoch. U Fontaneho víťazí <strong>nbinom</strong> systematicky (tri z troch). U Couperusa víťazí Weibull, no potom stráca v 1917. <strong>Celkovo:</strong> Weibull je AIC víťaz iba v 2/9 prípadov (obe rané Couperusove knihy). Pre 7/9 je dominantný iný model.</p>
+<p><strong>Čo hovorí Kulig/Stanisz:</strong> Weibull je univerzálny model IPI s globálnym <code>α ≈ 1.5</code>, fit kvalita je &quot;dobrá&quot; (neuvádza sa konkrétne AIC).</p>
+<p><strong>Čo z toho robíme:</strong> formulovať priamu výhradu — <strong>Weibull nie je univerzálny</strong>. Pre každého autora dominuje iný model a dokonca pre toho istého autora sa dominantný model mení v čase. Toto spochybňuje univerzalistický claim v prospech <strong>autor-závislých</strong> modelov. Použiť formuláciu typu: <em>&quot;Kulig's universal Weibull claim does not survive per-author AIC comparison — three authors show three different dominant models, and two of them switch models across career.&quot;</em> V abstrakte práce toto vystúpiť ako <strong>nie len ďalší Kulig replikát, ale priama empirická výhrada</strong>.</p>
+<p><strong>Prečo je to bezpečné:</strong> nevyžaduje žiadne nové výpočty, stačí interpretovať AIC tabuľku <a href="_aic/model_comparison.csv">_aic/model_comparison.csv</a> ktorú už máme. Riziko: oponentka sa spýta &quot;prečo Kulig nemá AIC?&quot; — odpoveď: Kulig nefitoval alternatívy, len Weibull; my fitujeme všetky štyri a porovnávame formálnym kritériom, čo je <strong>metodologicky prísnejšie</strong>.</p>
+<hr>
+<h3 id="134-markov-synth-rehabilituje-naivný-model--výhrada-voči-badm-preferencii">13.4 Markov-synth rehabilituje &quot;naivný&quot; model — výhrada voči BA/DM preferencii</h3>
+<p><strong>Zistenie:</strong> Pri evaluácii generatívnych sieťových modelov (Sekcia 8 — Barabási–Albert, Dorogovtsev–Mendes, Markov-synthetic, Shuffled) je jediný model, ktorý sa <strong>približuje reálnemu clusteringu</strong> <code>C ≈ 0.41</code>, Markov-synthetic (<code>C ≈ 0.40</code>). BA stráca na <code>C = 0.01</code> (rozdiel 41×), DM je naopak <strong>príliš</strong> klastrovaný na <code>C ≈ 0.74</code>. Shuffled baseline dáva <code>C ≈ 0.43</code> — takmer identicky s reálnym.</p>
+<p><strong>Čo hovorí konsenzus (Ferrer-i-Cancho &amp; Solé 2001, Sole et al. 2010):</strong> sieť prirodzeného jazyka je <em>preferential attachment</em> typu BA, pričom clustering a skále-voľnosť vyplývajú z <em>growth + preference</em>. Model je elegantný, teoreticky kompatibilný s Zipfom.</p>
+<p><strong>Čo z toho robíme:</strong> empiricky ukazujeme, že <strong>rast-models (BA/DM) nie sú potrebné</strong> na vysvetlenie pozorovaného clusteringu. Postačí <strong>lokálny bigram model</strong> (Markov na 2-gramoch) — teda model s <strong>oveľa slabšími</strong> predpokladmi. A &quot;ešte radikálnejšie&quot;: náhodné preusporiadanie tokenov (Shuffled) dáva takmer rovnaký clustering ako reálna sieť — čo znamená, že clustering ako metrika <strong>nie je diskriminačná</strong> pre test růst-modelov (lebo ju zachováva aj shuffling).</p>
+<p><strong>Silná forma tvrdenia:</strong> <em>&quot;Empirical clustering of word-adjacency networks is a property of unigram/bigram statistics, not of any growth mechanism. BA-style models are therefore over-parameterized for this phenomenon — simpler local statistics suffice.&quot;</em> To je priama výhrada voči tomu, čo sa v oblasti posledných 20 rokov považuje za štandard.</p>
+<p><strong>Riziko:</strong> toto je najkontroverznejšie tvrdenie — na obhajobe by oponentúra mohla namietnuť, že clustering nie je jediná metrika a BA vyhráva na iných (napr. degree-distribution exponent). Treba byť opatrný a presne vymedziť: <em>&quot;na clusteringu a priemernom stupni BA zlyháva, čo znamená že aspoň časť jeho predpovedí je chybná&quot;</em>, nie <em>&quot;BA je zbytočný&quot;</em>.</p>
+<hr>
+<h3 id="135-fontaneho-plochý-drift-ako-metodický-výstup-signalnoise-test">13.5 Fontaneho &quot;plochý drift&quot; ako metodický výstup (signal/noise test)</h3>
+<p><strong>Zistenie:</strong> Z troch autorov <strong>Fontane</strong> jediný <strong>nemá</strong> štatisticky signifikantný temporálny drift v Weibull <code>(α, β)</code> parametroch — hoci rozdiel medzi 1882 a 1898 je meraný (<code>α</code> rastie z 1.60 na 1.72), <strong>intra-book JSD</strong> (signal/noise baseline) je rovnako veľké. Teda to, čo vyzerá ako drift, je <strong>v rámci vnútroknižného šumu</strong>.</p>
+<p><strong>Prečo je to dôležité:</strong> <strong>bez tohto testu by sme falošne hlásili drift pre všetkých troch autorov.</strong> Dickens a Couperus majú signal/noise pomer &gt; 2 (drift je 2× väčší ako šum), Fontane má &lt; 1. Toto je <strong>metodický príspevok</strong> — ukazujeme, že veľa štúdií (vrátane tých, čo tvrdia &quot;gradual shift in authorial style&quot;) pravdepodobne iba detegujú vnútroknižný šum, lebo signal/noise test nikto nerobí.</p>
+<p><strong>Čo hovorí literatúra:</strong> Stamou 2008, Savoy 2020 a ďalšie authorship-attribution štúdie <strong>nikdy</strong> nekontrolujú vnútroknižný šum ako baseline. Predpokladajú, že rozdiely medzi knihami sú autorské/temporálne, a neoverujú, či nie sú náhodné.</p>
+<p><strong>Čo z toho robíme:</strong> <strong>metodická lekcia v diskusnej sekcii DP.</strong> Štyri vety: (a) temporálny drift sa musí kontrolovať proti vnútroknižnému šumu, (b) inak je to false positive, (c) náš dataset Fontaneho ukazuje, že aj &quot;zrejmé&quot; drifty môžu zmiznúť po kontrole, (d) toto by sa malo stať štandardom v Kulig-ovskom prístupe.</p>
+<hr>
+<h3 id="136-inšpirácia-z-ďalších-štúdií-na-rozšírenie--diskusiu">13.6 Inšpirácia z ďalších štúdií (na rozšírenie / diskusiu)</h3>
+<p>Ak by sme chceli ísť ďalej a ťahať nový uhol z literatúry:</p>
+<ul>
+<li><strong>Altmann, Pierrehumbert &amp; Motter (2009)</strong> — &quot;Beyond word frequency: bursts, lulls, and scaling&quot; — ukazujú, že slová majú bursty s power-law inter-arrival times. Obdoba pre interpunkciu: majú aj punct marks <em>burstiness</em> nad rámec Weibullu? Metrika: <strong>Goh-Barabási B</strong> (burstiness coefficient) = (σ-μ)/(σ+μ). Ľahko sa doplní — už máme IPI vektory.</li>
+<li><strong>Serrano, Flammini &amp; Menczer (2009)</strong> — heavy tails vs. Zipf u ranks. Pre naše dáta: korelácia medzi Zipf <code>α</code> a Weibull <code>α</code> per kniha. Ak je korelácia, je to nový vzťah medzi <strong>slovnou frekvenciou</strong> a <strong>interpunkčnou pamäťou</strong>.</li>
+<li><strong>Drożdż et al. 2016 / Stanisz et al. 2019</strong> — &quot;multi-scaling entropy&quot; na znakových sekvenciách. Pre IPI: shannon entropy of IPI distribution → comparable across authors. Jednoduché, ale pre všetkých autorov by sa získalo číselný fingerprint.</li>
+</ul>
+<p>Toto sú kandidáty, nie commitment. Ak si vyberieme 1–2, treba ich zrealizovať (každý cca ½–1 deň práce) a zakomponovať.</p>
+<hr>
+<p><strong>Zhrnutie — čo ostane ako &quot;fresh contribution&quot; v prípade obhajoby:</strong></p>
+<ol>
+<li><strong>Per-book AIC porovnanie 4 modelov</strong> → Weibull univerzalita spochybnená (7/9 iný model)</li>
+<li><strong>Kulig-style memoryless baseline test</strong> → dôkaz že <code>α &gt; 1</code> nie je artefakt (8/9)</li>
+<li><strong>Couperus-1917 anomália</strong> → prvá dokumentovaná <code>α → 1</code> de-correlation u jedného autora</li>
+<li><strong>Signal/noise kontrola vnútroknižným JSD</strong> → metodický štandard pre Kulig-ovské štúdie</li>
+<li><strong>BA/DM nedostatočné pre clustering, Markov-bigrám postačuje</strong> → výhrada voči preferential-attachment dogme pre jazyk</li>
+</ol>
+<p>Tri z piatich (1, 2, 4) sú priame metodologické vylepšenia Kulig/Stanisz prístupu a pre oponenta sú ťažko kritizovateľné — rigoróznejší postup. Zvyšné dve (3, 5) sú empirické nálezy, ktoré treba obhájiť interpretáciou.</p>
+<hr>
+<h2 id="14-revízia-plotov--kde-orezať-head--tail-a-kde-nie">14. Revízia plotov — kde orezať head / tail, a kde nie</h2>
+<p>Kontrola všetkých plot priečinkov, či začiatok/chvost skresľuje výsledky:</p>
+<table>
+<thead>
+<tr>
+<th>Plot</th>
+<th>Orezanie potrebné?</th>
+<th>Zdôvodnenie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>network_out_core/plots/degree_pk_*</code></td>
+<td><strong>ÁNO</strong> — urobené → <code>improved_plots/degree_cropped/</code></td>
+<td>Head k &lt; 4 (finite-size), tail single-count bins.</td>
+</tr>
+<tr>
+<td><code>improved_plots/degree/degree_improved_*</code></td>
+<td><strong>ÁNO</strong> — urobené, to isté riešenie</td>
+<td>rovnaký dôvod</td>
+</tr>
+<tr>
+<td><code>rankfreq_out_core/plots/rankfreq_*</code></td>
+<td><strong>ÁNO</strong> — urobené → <code>improved_plots/rankfreq_cropped/</code></td>
+<td>Prvé ranky mimo ZM lineárnej oblasti, tail hapax legomena.</td>
+</tr>
+<tr>
+<td><code>rankfreq_out_core/zipf_mandelbrot/zipf_mandelbrot_*</code></td>
+<td><strong>NIE</strong> (už majú fit-okno zvýraznené)</td>
+<td>Fit už používa r ∈ [20, 10000], plot zobrazuje celý rozsah vedome pre porovnanie.</td>
+</tr>
+<tr>
+<td><code>rankfreq_out_core/mfdfa/mfdfa_hq_*</code>, <code>mfdfa_spectrum_*</code></td>
+<td><strong>NIE</strong></td>
+<td>h(q) krivka a f(α) spektrum sú zo svojej podstaty konečné — celý rozsah q je zmysluplný.</td>
+</tr>
+<tr>
+<td><code>rankfreq_out_core/mfdfa/mfdfa_fluctuation_*</code></td>
+<td>Čiastočne</td>
+<td>Fit scaling region sa dá zvýrazniť, ale celý rozsah ukazuje tranziciu. Nechané.</td>
+</tr>
+<tr>
+<td><code>rankfreq_out_core/recurrence_time/burstiness_*</code></td>
+<td><strong>NIE</strong></td>
+<td>CV na malom počte symbolov — barplot, nie distribúcia, nemá head/tail.</td>
+</tr>
+<tr>
+<td><code>rankfreq_out_core/recurrence_time/recurrence_ccdf_*</code></td>
+<td>Čiastočne</td>
+<td>CCDF sa dá orezať pre exponenciálny fit, ale chvost má význam (bursty symboly). Nechané.</td>
+</tr>
+<tr>
+<td><code>punct_out_core/plots/boxplot_*</code></td>
+<td><strong>NIE</strong></td>
+<td>Boxploty — žiadny head/tail artefakt.</td>
+</tr>
+<tr>
+<td><code>temporal_out/temporal_ipi_histogram.png</code>, <code>temporal_ipi_weibull_logy.png</code></td>
+<td><strong>NIE</strong></td>
+<td>Celý IPI rozsah je potrebný pre Weibull fit; chvost je kľúčový pre tvar α.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Záver:</strong> orezanie má najväčší efekt na <strong>degree</strong> a <strong>rank-frequency</strong> ploty, kde power-law fit je viditeľne ovplyvnený head/tail-om. Všetky ostatné ploty sú buď bez head/tail (boxploty, bar charts) alebo majú fit-okno explicitne zvýraznené v rámci samotnej krivky.</p>
+<p><strong>Skript:</strong> <a href="../scripts/10_improvements/cropped_plots.py">scripts/10_improvements/cropped_plots.py</a> — číta fit-okno z existujúcich <code>improved_plots/*_logbin_fit_improved.csv</code>, aplikuje log-bin (50 binov) a orezáva xlim na <code>[fit_lo, fit_hi]</code> s ± 0.1 log-unit marginálmi.</p>
+<hr>
+<h2 id="15-otvorené-otázky-pre-konzultáciu">15. Otvorené otázky pre konzultáciu</h2>
+<ol>
+<li><strong>Stačí 80 kníh / jazyk</strong> v hlavnom korpuse a 3 knihy / autor v temporáli, alebo rozšíriť?</li>
+<li><strong>Pridať slovanský jazyk</strong> (pre priame porovnanie so Stanisz et al. 2014 a Kulig et al. 2016)?</li>
+<li>Držať sa <strong>Weibullu</strong> ako hlavného modelu IPI napriek AIC výsledkom, alebo prijať lognormal/nbinom ako alternatívy?</li>
+<li>Akceptovateľný <strong>zápis driftu jediným skalárom</strong> (napr. vzdialenosť (α, β) v normalizovanom priestore)?</li>
+<li>Dať všetky tri jazyky do <strong>temporálneho</strong> obrazu tak, aby bol konzistentný s hlavným korpusom (teraz je temporál len na 9 kníh)?</li>
+<li>Do finálnej práce ísť s <strong>orezanými</strong> degree/rankfreq plotmi (čisté power-law), alebo s <strong>párom</strong> pôvodný + orezaný (transparentnejšie k metodológii)?</li>
+</ol>
+
+</body>
+</html>

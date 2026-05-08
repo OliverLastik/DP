@@ -1,0 +1,65 @@
+# OS and editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/
+
+# Python generated files and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# LaTeX generated files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+
+# Archives and manual backups
+*.zip
+
+# Generated analysis outputs
+*_out/
+*_out_core/
+run_*_out/
+test_runs/
+combined_plots/
+improved_plots/
+!temporal_out/
+!temporal_out/**
+
+# Thesis source and large source corpora not listed in the electronic appendix
+LateX/
+data/
+data_core/
+temporal_data/*
+!temporal_data/tokens/
+!temporal_data/tokens/**
+
+# Root-level intermediate tables not listed in the electronic appendix
+/*.csv
+markov_out_core2/
+/opak.py
+/priloha.txt
+
+# Accidental shell scratch files in the project root
+/0
+/cd
+/Counter
+/python
+/random_help
