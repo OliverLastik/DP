@@ -16,6 +16,7 @@ Vystupy:
       hazard_overlay_all.png  (vsetkych 9 v 3x3 grid)
       burstiness_memory_scatter.png
 """
+import argparse
 import csv
 import sys
 from pathlib import Path
@@ -115,8 +116,14 @@ def parse_meta(stem):
 
 
 def main():
-    tok_root = Path("temporal_data/tokens")
-    out_dir = Path("temporal_out/_hazard_burst")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--token-dir", "--tok-root", dest="token_dir",
+                    default="temporal_data/tokens")
+    ap.add_argument("--out-dir", default="temporal_out/_hazard_burst")
+    args = ap.parse_args()
+
+    tok_root = Path(args.token_dir)
+    out_dir = Path(args.out_dir)
     plot_dir = out_dir / "plots"
     out_dir.mkdir(parents=True, exist_ok=True)
     plot_dir.mkdir(parents=True, exist_ok=True)

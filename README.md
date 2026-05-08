@@ -10,7 +10,7 @@ rank-frequency analýzy, sieťové metriky a temporálnu analýzu vybraných aut
 - `run_pipeline.py` - jednotný riadiaci skript celej analytickej pipeline.
 - `scripts/` - zdrojové kódy jednotlivých fáz spracovania od sťahovania dát až po temporálne analýzy.
 - `requirements.txt` - zoznam Python knižníc s použitými verziami.
-- `temporal_data/tokens/` - tokenizované verzie kníh použitých v temporálnej časti.
+- `temporal_data/tokens/` - tokenizované verzie 9 hlavných kníh časového korpusu a 2 doplnkové Couperusove validačné texty.
 - `temporal_out/` - numerické výstupy a grafy temporálnej analýzy.
 
 ## Inštalácia
@@ -51,7 +51,7 @@ výsledky je potrebné spustiť analýzu bez tohto parametra.
 
 Výstupy temporálnej analýzy sú uložené v adresári `temporal_out/`. Obsahujú
 napríklad CSV tabuľky s odhadmi parametrov, AIC porovnaniami, KS testami,
-bootstrap výsledkami a vygenerované grafy.
+bootstrap výsledkami, doplnkovou Couperusovou validáciou a vygenerované grafy.
 
 Pri vlastnom spustení pipeline sa vytvorí aj `run_summary.txt`, ktorý sumarizuje
 spustené fázy, ich úspešnosť a celkový čas behu.

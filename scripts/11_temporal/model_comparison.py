@@ -13,6 +13,7 @@ Pre kazdu knihu:
   - loglik, AIC, BIC
   - rank podla AIC
 """
+import argparse
 import csv
 from pathlib import Path
 
@@ -171,8 +172,14 @@ def parse_meta(stem: str):
 
 
 def main():
-    tok_root = Path("temporal_data/tokens")
-    out = Path("temporal_out/_aic")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--token-dir", "--tok-root", dest="token_dir",
+                    default="temporal_data/tokens")
+    ap.add_argument("--out-dir", default="temporal_out/_aic")
+    args = ap.parse_args()
+
+    tok_root = Path(args.token_dir)
+    out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
 
     books = []
@@ -190,6 +197,9 @@ def main():
             })
 
     print(f"[INFO] {len(books)} books to compare")
+    if not books:
+        print(f"[WARN] No temporal books found in {tok_root}")
+        return
 
     rows = []
     for b in books:

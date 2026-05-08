@@ -12,6 +12,7 @@ Test:
   3. KL divergencia kazdej sub-distribucie voci marginalu P(K).
   4. Globalny chi-square test nezavislosti (po binovani K).
 """
+import argparse
 import csv
 from collections import defaultdict
 from pathlib import Path
@@ -54,8 +55,14 @@ def compute_ipi_with_prev_punct(tokens):
 
 
 def main():
-    tok_root = Path("temporal_data/tokens")
-    out_dir = Path("temporal_out/_independence_test")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--token-dir", "--tok-root", dest="token_dir",
+                    default="temporal_data/tokens")
+    ap.add_argument("--out-dir", default="temporal_out/_independence_test")
+    args = ap.parse_args()
+
+    tok_root = Path(args.token_dir)
+    out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     plot_dir = out_dir / "plots"
     plot_dir.mkdir(parents=True, exist_ok=True)

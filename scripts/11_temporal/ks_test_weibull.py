@@ -96,12 +96,15 @@ def parse_meta(stem):
 def main():
     import argparse
     ap = argparse.ArgumentParser()
+    ap.add_argument("--token-dir", "--tok-root", dest="token_dir",
+                    default="temporal_data/tokens")
+    ap.add_argument("--out-dir", default="temporal_out/_ks_test")
     ap.add_argument("--n-bootstrap", type=int, default=200)
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
 
-    tok_root = Path("temporal_data/tokens")
-    out_dir = Path("temporal_out/_ks_test")
+    tok_root = Path(args.token_dir)
+    out_dir = Path(args.out_dir)
     plot_dir = out_dir / "plots"
     out_dir.mkdir(parents=True, exist_ok=True)
     plot_dir.mkdir(parents=True, exist_ok=True)

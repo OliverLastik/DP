@@ -15,6 +15,7 @@ Vystupy:
       conditional_beta_per_book.png    - bar chart beta per tau_prev x book
       pmf_overlay_<book_key>.png       - PMF for each tau_prev overlaid
 """
+import argparse
 import csv
 import sys
 from collections import defaultdict
@@ -59,8 +60,14 @@ def parse_meta(stem):
 
 
 def main():
-    tok_root = Path("temporal_data/tokens")
-    out_dir = Path("temporal_out/_cond_weibull")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--token-dir", "--tok-root", dest="token_dir",
+                    default="temporal_data/tokens")
+    ap.add_argument("--out-dir", default="temporal_out/_cond_weibull")
+    args = ap.parse_args()
+
+    tok_root = Path(args.token_dir)
+    out_dir = Path(args.out_dir)
     plot_dir = out_dir / "plots"
     out_dir.mkdir(parents=True, exist_ok=True)
     plot_dir.mkdir(parents=True, exist_ok=True)
